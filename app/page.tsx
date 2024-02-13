@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [query, setQuery] = useState("");
 
-  const handleSearch = (event: any) => {
+  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Handle the search logic or redirection here
     console.log("User searched for:", query);

@@ -30,11 +30,25 @@
   font-size: 1rem;
   border-radius: 10px;
   margin-right: 10px;
-  width: 400px;
+  width: 300px; /* Mobile */
   background-color: #333;
   border-color: #444;
   color: #fff;
   outline: none;
+}
+
+/* Medium screens */
+@media (min-width: 600px) {
+  .searchInput {
+    width: 450px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 992px) {
+  .searchInput {
+    width: 600px;
+  }
 }
 
 .searchButton {
@@ -49,7 +63,6 @@
   outline: none;
 }
 
-.searchButton:hover,
-.searchButton:focus {
+.searchButton:hover {
   background-color: #5a5a5a;
 }
