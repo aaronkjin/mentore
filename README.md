@@ -16,10 +16,6 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-## Contributing
-
-For information on making contributions, please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
-
 ## License
 
 Not for public release. Do not copy, do not distribute.
