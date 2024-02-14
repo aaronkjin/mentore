@@ -23,7 +23,8 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Mentore</h1>
+      <header className={styles.header}>Mentore</header>
+      <h1 className={styles.title}>Unlock Potential Together</h1>
       <form onSubmit={handleSearch} className={styles.searchForm}>
         <textarea
           value={query}
