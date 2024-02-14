@@ -33,30 +33,28 @@ def query_bot():
     precompute = generate_embeddings(csv_content_by_row)
     # Read the incoming message from the JSON payload
     data = request.json
-    incoming_msg = data['messageContext']
 
-    user_text = data['text']
+    user_text = data['message']
     user_embedding = client.embeddings.create(input = [user_text], model="gpt-4-turbo-preview").data[0].embedding
 
     max_sim = 0
     id = 0
     # Find maximum cosine similarity
     for i in range(len(precompute)):
-        cur_sim = distance.cosine(user_embedding, precompute[i]
+        cur_sim = distance.cosine(user_embedding, precompute[i])
         if (cur_sim > max_sim):
             max_sim = cur_sim
             id = i
 
     # Convert the CSV content to a string representation for the query
-    csv_content_for_query = json.dumps(csv_content_as_dicts)
-    system_message = f"You are a pharmacy assista: {csv_content_for_query}. You only reply with JSON."
+    system_message = f"You are a mentor-matching assistant. I will provide you a description of my academic interests, career goals, and/or hobbies. You will match me with the mentor" + csv_content_by_row[id] + " who is most compatible with me."
 
     # Prepare and send the payload to the OpenAI API using the new client method
     response = client.chat.completions.create(
         model="gpt-4-turbo-preview",
         messages=[
             {"role": "system", "content": system_message},
-            {"role": "user", "content": incoming_msg}
+            {"role": "user", "content": user_text}
         ]
     )
 
