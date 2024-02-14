@@ -1,6 +1,6 @@
 # Mentore
 
-An LLM-integrated mentor-matching platform. Find the perfect mentor that you need based on your specific needs, preferences, and criteria.
+An LLM-integrated mentor-matching platform. Designed to connect individuals with the perfect mentor tailored to their unique needs, preferences, and aspirations. Offers personalized mentorship connections that can help propel your personal and professional growth.
 
 ## Getting Started
 
@@ -15,6 +15,16 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser.
+
+## Design
+
+### Backend
+
+The backend is engineered to process user queries through a robust JSON interface, leveraging OpenAI embeddings and GPT-4's computation capabilities. It analyzes user input to generate a compatible mentor match, outputting the results in a structured JSON format for the frontend to consume.
+
+### Frontend
+
+The frontend presents a digital UI, designed for intuitive user interactions. It facilitates the input of user information, displaying tailored mentor matches with rich profiles and interactive elements, ensuring a seamless user journey from query to connection.
 
 ## License
 
