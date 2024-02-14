@@ -66,3 +66,57 @@
 .searchButton:hover {
   background-color: #5a5a5a;
 }
+
+.signInFooter {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 5px 0;
+  background-color: #202020;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #3a3a3a;
+}
+
+.signInButton {
+  width: 98%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  background-color: #333;
+  color: #adadad;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.signInButton:hover {
+  background-color: #4a4a4a;
+}
+
+@media (min-width: 850px) {
+  .signInFooter {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    left: auto;
+    bottom: auto;
+    width: auto;
+    border-top: none;
+    padding: 0;
+  }
+
+  .signInButton {
+    width: auto;
+    padding: 10px 20px;
+  }
+}
+
+@media (min-width: 600px) {
+  .container {
+    padding-top: 50px;
+  }
+}

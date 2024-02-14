@@ -40,6 +40,10 @@ export default function Home() {
           Search
         </button>
       </form>
+
+      <footer className={styles.signInFooter}>
+        <button className={styles.signInButton}>Sign In / Sign Up</button>
+      </footer>
     </div>
   );
 }
