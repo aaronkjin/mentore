@@ -8,7 +8,7 @@ import json
 app = Flask(__name__)
 
 # Load CSV data and convert it to a list of dictionaries
-csv_file_path = 'mentore_mock_data.csv'
+csv_file_path = 'mentore_data.csv'
 csv_content_by_row = []
 with open(csv_file_path, newline='') as csvfile:
     reader = csv.DictReader(csvfile)
