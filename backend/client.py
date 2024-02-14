@@ -10,13 +10,10 @@ app = Flask(__name__)
 # Load CSV data and convert it to a list of dictionaries
 csv_file_path = 'mentore_mock_data.csv'
 csv_content_by_row = []
-
-with open(csv_file_path, mode='r', encoding='utf-8') as file:
-    csv_reader = csv.reader(file)
-    # Skipping the header row if your CSV has one
-    next(csv_reader)
-    for row in csv_reader:
-        csv_content_by_row.append(row)
+with open(csv_file_path, newline='') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        csv_content_as_dicts.append(row)
 
 # Initialize the OpenAI client with your API key
 client = OpenAI(api_key='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')
