@@ -41,7 +41,7 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 - TypeScript
 - HTML/CSS
 - Next.js (React framework)
-- Client-side data fetching state management with React hooks
+- Client-side data fetching and state management with React hooks
 
 ### Data Handling and AI
 
