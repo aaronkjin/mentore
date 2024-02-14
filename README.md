@@ -26,6 +26,30 @@ The backend is engineered to process user queries through a robust JSON interfac
 
 The frontend presents a digital UI, designed for intuitive user interactions. It facilitates the input of user information, displaying tailored mentor matches with rich profiles and interactive elements, ensuring a seamless user journey from query to connection.
 
+## Technologies Used
+
+### Backend
+
+- Flask (Python web framework)
+- OpenAI Python library
+- SciPy library (for spatial distance computations)
+- CSV module (for CSV file operations)
+- JSON module (for JSON parsing and response handling)
+
+### Frontend
+
+- TypeScript
+- HTML/CSS
+- Next.js (React framework)
+- Client-side data fetching state management with React hooks
+
+### Data Handling and AI
+
+- Precomputed embeddings using OpenAI's embedding models
+- RESTful API endpoints for querying and response handling
+- Cosine similarity for mentor matching logic
+- GPT-4 for generating mentor matches based on user queries
+
 ## Contributing
 
 We welcome contributions! If you're interested in helping improve Mentore, please fork the repository and submit a pull request with your proposed changes. For major changes, please open an issue first to discuss what you would like to change.
