@@ -30,25 +30,15 @@
   font-size: 1rem;
   border-radius: 10px;
   margin-right: 10px;
-  width: 300px; /* Mobile */
   background-color: #333;
   border-color: #444;
   color: #fff;
   outline: none;
-}
-
-/* Medium screens */
-@media (min-width: 600px) {
-  .searchInput {
-    width: 450px;
-  }
-}
-
-/* Large screens */
-@media (min-width: 992px) {
-  .searchInput {
-    width: 600px;
-  }
+  resize: none;
+  overflow: auto;
+  width: 70vw;
+  max-width: 700px;
+  min-width: 300px;
 }
 
 .searchButton {
