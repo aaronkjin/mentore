@@ -14,6 +14,7 @@ export default function Home() {
 
   const handleSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log("Form submitted");
 
     const fetchData = async () => {
       const endpoint = "http://172.31.31.60:5000/query"; // Replace with your actual backend URL

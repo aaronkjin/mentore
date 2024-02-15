@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, FormEvent } from "react";
 import styles from "../styles/Home.module.css";
 
 interface SearchFormProps {
