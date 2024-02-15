@@ -17,7 +17,7 @@ export default function Home() {
     console.log("Form submitted");
 
     const fetchData = async () => {
-      const endpoint = "http://172.31.31.60:5000/query"; // Replace with your actual backend URL
+      const endpoint = "http://172.31.31.60:5000/query";
       const payload = {
         message: query,
       };
@@ -27,8 +27,6 @@ export default function Home() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // If you have any authentication token, add it to the headers
-            // 'Authorization': 'Bearer YOUR_TOKEN_HERE'
           },
           body: JSON.stringify(payload),
         });
@@ -39,10 +37,8 @@ export default function Home() {
 
         const data = await response.json();
         console.log("Response data:", data);
-        // Handle the response data as needed
       } catch (error) {
         console.error("Error fetching data:", error);
-        // Handle errors as needed
       }
     };
 
@@ -67,7 +63,6 @@ export default function Home() {
         onQueryChange={handleTextChange}
         onSearchSubmit={handleSearch}
       />
-
       <SignInFooter />
     </div>
   );
