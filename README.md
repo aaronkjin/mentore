@@ -50,6 +50,16 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 - Cosine similarity for mentor matching logic
 - GPT-4 for generating mentor matches based on user queries
 
+## Sprint 2 Updates
+
+### Aaron
+
+### Daniel
+
+### Sarvesh
+
+### Andrew
+
 ## Contributing
 
 We welcome contributions! If you're interested in helping improve Mentore, please fork the repository and submit a pull request with your proposed changes. For major changes, please open an issue first to discuss what you would like to change.
