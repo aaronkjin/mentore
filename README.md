@@ -54,13 +54,31 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 
 ### Aaron
 
-### Daniel
-This sprint: I refactored the existing backend for our previous idea (PharmD). Specifically, I precompute embeddings for all our mentor data that I import from a .csv file using the OpenAI embeddings API. Then, I take the user query and compute the embedding for it in the same manner and I find the precomputed embedding with the highest cosine similarity to try to match the mentor. Finally, I use the text generation API for the chatbot conversation with the user that suggests the mentor with the highest embedding cosine similarity. I also worked on integrating requests to the webpoint from the frontend.
+**This sprint:** Regarding our initial idea (PharmD), our group and I decided to engage in extensive market research within the retail pharmacy space. To do so, we paired up (Andrew + me, Daniel + Sarvesh) and interviewed 15+ local retail pharmacies in order to needfind and see whether there was a market need for the product we envisioned. After some deliberation (along with external hurdles), we decided as a group that it was best for us to pivot our idea to something more tangible and within our grasp given the scope and length of this class.
 
-Next spring: The results for mentor-matching are very subpar. For instance, if I ask for a mentor that specializes in AI, machine learning, and app-building with LLMs, the suggested mentor is Bob Ross (???). I will aim to redesign the embeddings and similarity calculations to see if I can improve this. Furthermore, I aim to make a more robust database to create embeddings (which may fix the previous issue) and implement full chatbot functionality rather than just one user input and one chatbot response.
+For our pivot, we ideated on building an AI-powered mentor-matching platform. All of us realized that, despite coming to Stanford, we had to pave our own journeys to discover steps that would best align with our academics and career goals; if we were able to chat with mentors, we could have had more seamless, fluid journeys.
+
+Specifically, for this sprint, I, alongside Sarvesh in our code-pairing sessions, built the frontend application from the ground up (using Next.js as our boilerplate) and enhanced the UI of our mentor-matching platform. We focused on implementing the key UI features that would be crucial for our app. Each component was meticulously crafted to ensure seamless functionality in the near future (by the next sprint) and aesthetic coherence with the app's theme. Currently, our frontend is built as sort of a mock-up in the sense that the user's text input is sent to the backend and is successfully queried but does not show conversational output yet. I will continue to work on that in the next sprint (see details below for my goals for the next sprint).
+
+**Next sprint:** For the next sprint, I will build out the interface for chat displays between the user and our chatbot. I am taking inspiration, in terms of design, from OpenAI's ChatGPT as well as various other newer chatbot interfaces: Perplexity and Phind, for instance. I will also focus on building a responsive and robust authentication system by integrating Google Auth for user convenience. Thus, my main tickets for next sprint are building out the chat UI so that users can see and respond to the chatbot's outputs as well as integrating an authentication system.
+
+### Daniel
+
+**This sprint:** I refactored the existing backend for our previous idea (PharmD). Specifically, I precompute embeddings for all our mentor data that I import from a .csv file using the OpenAI embeddings API. Then, I take the user query and compute the embedding for it in the same manner and I find the precomputed embedding with the highest cosine similarity to try to match the mentor. Finally, I use the text generation API for the chatbot conversation with the user that suggests the mentor with the highest embedding cosine similarity. I also worked on integrating requests to the webpoint from the frontend.
+
+**Next sprint:** The results for mentor-matching are very subpar. For instance, if I ask for a mentor that specializes in AI, machine learning, and app-building with LLMs, the suggested mentor is Bob Ross (???). I will aim to redesign the embeddings and similarity calculations to see if I can improve this. Furthermore, I aim to make a more robust database to create embeddings (which may fix the previous issue) and implement full chatbot functionality rather than just one user input and one chatbot response.
+
 ### Sarvesh
 
+**This sprint:**
+
+**Next sprint:**
+
 ### Andrew
+
+**This sprint:**
+
+**Next sprint:**
 
 ## Contributing
 
