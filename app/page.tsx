@@ -17,7 +17,7 @@ export default function Home() {
     console.log("Form submitted");
 
     const fetchData = async () => {
-      const endpoint = "http://172.31.31.60:5000/query";
+      const endpoint = "http://54.218.124.218:5000/query";
       const payload = {
         message: query,
       };

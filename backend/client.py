@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from openai import OpenAI
 from scipy.spatial import distance
 import csv
@@ -6,6 +7,7 @@ import json
 
 # Flask app initialization
 app = Flask(__name__)
+CORS(app)
 
 # Load CSV data and convert it to a list of dictionaries
 csv_file_path = 'mentore_data.csv'
@@ -18,14 +20,9 @@ with open(csv_file_path, mode='r', encoding='utf-8') as file:
     next(csv_reader)
     for row in csv_reader:
         csv_content_by_row.append(row)
-'''
-with open(csv_file_path, newline='') as csvfile:
-    reader = csv.DictReader(csvfile)
-    for row in reader:
-        csv_content_by_row.append(row)
-'''
+
 # Initialize the OpenAI client with your API key
-client = OpenAI(api_key='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')
+client = OpenAI(api_key='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')
 
 def generate_embeddings(data, model="text-embedding-3-small"):
     embeddings = []
