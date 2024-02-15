@@ -71,8 +71,17 @@ Specifically, for this sprint, I, alongside Sarvesh in our code-pairing sessions
 ### Sarvesh
 
 **This sprint:**
+In our last sprint, the team made significant progress on pivoting our project towards an AI-powered mentor-matching platform, which aligns more closely with the immediate needs and opportunities we identified through our market research. I played a pivotal role in our ideation phase and worked on the frontened with Aaron. Overall, we've laid the groundwork for a platform that promises to connect students with mentors in a more meaningful and efficient way.
+
+Last Sprint Achievements:
+Conducted extensive market research within the retail pharmacy space before deciding on a pivot.
+Ideated and initiated the development of an AI-powered mentor-matching platform.
+Developed the frontend application from scratch, focusing on key UI features to enhance user experience with Aaron while pair programming.
 
 **Next sprint:**
+Fixing the Backend: This involves a thorough review and enhancement of our current backend infrastructure to support the increased complexity and functionality of our mentor-matching platform. Ensuring stability, scalability, and security will be key aspects of this work.
+Improving Cosine Similarity Functionality: Currently, our platform is not matching kids to mentors as accurately as we intend. Sarvesh will be dedicating time to refine the algorithm, specifically focusing on the cosine similarity calculations that underpin our matching logic. This will involve:
+
 
 ### Andrew
 
