@@ -55,7 +55,9 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 ### Aaron
 
 ### Daniel
+This sprint: I refactored the existing backend for our previous idea (PharmD). Specifically, I precompute embeddings for all our mentor data that I import from a .csv file using the OpenAI embeddings API. Then, I take the user query and compute the embedding for it in the same manner and I find the precomputed embedding with the highest cosine similarity to try to match the mentor. Finally, I use the text generation API for the chatbot conversation with the user that suggests the mentor with the highest embedding cosine similarity. I also worked on integrating requests to the webpoint from the frontend.
 
+Next spring: The results for mentor-matching are very subpar. For instance, if I ask for a mentor that specializes in AI, machine learning, and app-building with LLMs, the suggested mentor is Bob Ross (???). I will aim to redesign the embeddings and similarity calculations to see if I can improve this. Furthermore, I aim to make a more robust database to create embeddings (which may fix the previous issue) and implement full chatbot functionality rather than just one user input and one chatbot response.
 ### Sarvesh
 
 ### Andrew
