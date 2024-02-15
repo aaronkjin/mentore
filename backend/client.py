@@ -25,7 +25,7 @@ with open(csv_file_path, newline='') as csvfile:
         csv_content_by_row.append(row)
 '''
 # Initialize the OpenAI client with your API key
-client = OpenAI(api_key='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')
+client = OpenAI(api_key='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')
 
 def generate_embeddings(data, model="text-embedding-3-small"):
     embeddings = []
