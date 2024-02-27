@@ -12,7 +12,7 @@ const SearchForm = ({
   onQueryChange,
   onSearchSubmit,
 }: SearchFormProps) => (
-  <form onSubmit={onSearchSubmit} className={styles.searchForm}>
+  <form onSubmit={onSearchSubmit} className="mt-5 flex flex-row items-center">
     <textarea
       value={query}
       onChange={onQueryChange}

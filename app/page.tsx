@@ -56,14 +56,12 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <Header />
       <h1 className={styles.title}>Unlock Potential Together</h1>
       <SearchForm
         query={query}
         onQueryChange={handleTextChange}
         onSearchSubmit={handleSearch}
       />
-      <SignInFooter />
     </div>
   );
 }
