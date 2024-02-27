@@ -1,38 +1,113 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #121212;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App-header > h1 {
+  font-size: 48px; /* Adjust to match the mockup */
+  font-weight: 300;
+  margin: 0;
+  margin-bottom: 20px; /* Spacing between elements */
+}
+
+.App-header > p {
+  font-size: 24px; /* Adjust to match the mockup */
+  font-weight: 300;
+  margin: 0;
+  margin-bottom: 50px; /* Spacing between elements */
+}
+
+/* Additional styles to remove hyperlink formatting on h1 */
+a > h1 {
+  color: white; /* Ensures the color is the same as if it were not a link */
+  text-decoration: none !important;
+  cursor: default; /* Keeps the cursor as default instead of pointer */
+}
+
+/* This is to ensure that the :visited state also doesn't change the color */
+a:visited > h1 {
   color: white;
+  text-decoration: none !important;
 }
 
-.App-link {
-  color: #61dafb;
+/* This is to ensure that the :hover state also doesn't change the color or add decoration */
+a:hover > h1,
+a:focus > h1 {
+  color: white;
+  text-decoration: none !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav {
+  width: 98%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  padding: 10; /* Remove padding at the top */
+  height: 60px; /* Adjust this as needed to reduce the space */
+}
+
+nav > .sign-in-button {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: row; /* Align input and button in a row */
+  align-items: center;
+  gap: 10px; /* Adjust spacing between input and button */
+  width: 200%;
+  max-width: none; /* Remove max-width to allow form to be longer */
+}
+
+input[type="text"] {
+  font-size: 16px;
+  padding: 15px 20px;
+  width: 100%; /* Adjust width to match the mockup */
+  border-radius: 20px; /* Rounded borders */
+  border: none;
+  margin-bottom: 0; /* No margin at the bottom */
+}
+
+button {
+  padding: 15px 20px;
+  font-size: 16px;
+  background-color: #333; /* Dark grey button */
+  color: white;
+  border: none;
+  border-radius: 20px; /* Rounded borders */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555; /* Slightly lighter grey on hover */
 }

@@ -4,14 +4,11 @@ An LLM-integrated mentor-matching platform. Designed to connect individuals with
 
 ## Getting Started
 
-Install and run server:
+To see the website up and running, go into the frontend directory, and run:
 
 ```bash
-# install dependencies
-yarn
-
 # run
-yarn dev
+npm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser.
@@ -38,9 +35,9 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 
 ### Frontend
 
-- TypeScript
+- JavaScript
 - HTML/CSS
-- Next.js (React framework)
+- React
 - Client-side data fetching and state management with React hooks
 
 ### Data Handling and AI
@@ -81,7 +78,6 @@ Developed the frontend application from scratch, focusing on key UI features to 
 **Next sprint:**
 Fixing the Backend: This involves a thorough review and enhancement of our current backend infrastructure to support the increased complexity and functionality of our mentor-matching platform. Ensuring stability, scalability, and security will be key aspects of this work.
 Improving Cosine Similarity Functionality: Currently, our platform is not matching kids to mentors as accurately as we intend. Sarvesh will be dedicating time to refine the algorithm, specifically focusing on the cosine similarity calculations that underpin our matching logic. This will involve:
-
 
 ### Andrew
 

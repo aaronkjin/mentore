@@ -33,17 +33,30 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="textInput">Search for mentor:</label>
-        <input
-          type="text"
-          id="textInput"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      <p>output</p>
+      <nav>
+        <a
+          href="https://github.com/aaronkjin/mentore"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h1>Mentore</h1>
+        </a>
+        <button className="sign-in-button">Sign In / Sign Up</button>
+      </nav>
+      <header className="App-header">
+        <p>Unlock Potential Together</p>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            id="textInput"
+            placeholder="Let's find your perfect mentor..."
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+          <button type="submit">Search</button>
+        </form>
+        <p>{output}</p>
+      </header>
     </div>
   );
 }
