@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [output, setOutput] = useState("");
-  const [chatBegin, setChatBegin] = useState(true)
+  const [chatBegin, setChatBegin] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = chatBegin ? "auto" : "hidden";
+  }, [chatBegin]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,7 +31,7 @@ function App() {
       const data = await response.json();
       setOutput(data.message);
       console.log("Response data:", data);
-      setChatBegin(true)
+      setChatBegin(true);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -46,41 +50,40 @@ function App() {
         <button className="sign-in-button">Sign In / Sign Up</button>
       </nav>
 
-      <div>text</div> 
-
-      {!chatBegin && 
+      {!chatBegin && (
         <header className="App-header">
-        <p>Unlock Potential Together</p>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            id="textInput"
-            placeholder="Let's find your perfect mentor..."
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-          <button type="submit">Search</button>
-        </form>
-        <p>{output}</p>
+          <p>Unlock Potential Together</p>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              id="textInput"
+              placeholder="Let's find your perfect mentor..."
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+            <button type="submit">Search</button>
+          </form>
+          <p>{output}</p>
         </header>
-      }
+      )}
 
-      {chatBegin && 
+      {/* <div className="chat-display">This is a test</div> */}
+
+      {chatBegin && (
         <header className="App-bottom">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            id="textInput"
-            placeholder="Let's find your perfect mentor..."
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-          <button type="submit">Search</button>
-        </form>
-        <p>{output}</p>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              id="textInput"
+              placeholder="Ask a follow-up..."
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+            <button type="submit">Search</button>
+          </form>
+          <p>{output}</p>
         </header>
-      }
-      
+      )}
     </div>
   );
 }

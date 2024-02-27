@@ -3,7 +3,7 @@ html {
   height: 100%;
   margin: 0;
   font-family: "Arial", sans-serif;
-  background-color: #121212;
+  background-color: #191919;
 }
 
 .App {
@@ -14,6 +14,8 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 60px; /* Height of NavBar */
+  padding-bottom: 60px; /* Height of SearchForm */
 }
 
 .App-header {
@@ -32,22 +34,24 @@ html {
   justify-content: end;
   align-items: center;
   height: 100vh;
-  padding: 5vh;
+  padding: 8vh;
   box-sizing: border-box;
+  position: fixed;
+  z-index: 1000;
 }
 
 .App-header > h1 {
   font-size: 48px;
   font-weight: 300;
   margin: 0;
-  margin-bottom: 20px; /* Spacing between elements */
+  margin-bottom: 20px;
 }
 
 .App-header > p {
   font-size: 24px;
   font-weight: 300;
   margin: 0;
-  margin-bottom: 50px; /* Spacing between elements */
+  margin-bottom: 50px;
 }
 
 /* Additional styles to remove hyperlink formatting on h1 */
@@ -77,6 +81,10 @@ nav {
   top: 0;
   padding: 10;
   height: 60px;
+  position: fixed;
+  left: 2;
+  right: 2;
+  z-index: 1000;
 }
 
 nav > .sign-in-button {
@@ -120,11 +128,9 @@ button:hover {
   background-color: #555;
 }
 
-.scrollable-text-box {
-  width: 100%; /* or any specific width */
-  height: 200px; /* Set a fixed height */
-  overflow-y: auto; /* Enables vertical scrolling if content overflows */
-  padding: 10px; /* Optional: Adds some padding inside the box */
-  border: 1px solid #ccc; /* Optional: Adds a border around the text box */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: Adds a subtle shadow for better UI */
+.chat-display {
+  margin-top: 120px; /* 60 */
+  margin-bottom: 120px; /* 60 */
+  overflow-y: auto;
+  flex-grow: 1;
 }
