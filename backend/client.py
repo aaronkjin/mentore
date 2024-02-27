@@ -22,7 +22,7 @@ with open(csv_file_path, mode='r', encoding='utf-8') as file:
         csv_content_by_row.append(row)
 
 # Initialize the OpenAI client with your API key
-client = OpenAI(api_key='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')
+client = OpenAI(api_key='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')
 
 def generate_embeddings(data, model="text-embedding-3-small"):
     embeddings = []
@@ -43,7 +43,7 @@ def query_bot():
     id = 0
     # Find maximum cosine similarity
     for i in range(len(precompute)):
-        cur_sim = distance.cosine(user_embedding, precompute[i])
+        cur_sim = 1 - distance.cosine(user_embedding, precompute[i])
         if (cur_sim > max_sim):
             max_sim = cur_sim
             id = i
