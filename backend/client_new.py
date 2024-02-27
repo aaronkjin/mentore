@@ -22,7 +22,7 @@ with open(csv_file_path, mode='r', encoding='utf-8') as file:
         mentor_id = str(index)
         row_string = ', '.join(row.values())
         # Update this line with your actual API key
-        client = OpenAI(api_key='your-api-key')
+        client = OpenAI(api_key='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')
         embedding = client.embeddings.create(input=[row_string], model="text-embedding-3-small").data[0].embedding
         precomputed_embeddings[mentor_id] = embedding
 
