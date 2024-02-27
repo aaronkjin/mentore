@@ -4,6 +4,7 @@ import "./App.css";
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [output, setOutput] = useState("");
+  const [chatBegin, setChatBegin] = useState(true)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,6 +27,7 @@ function App() {
       const data = await response.json();
       setOutput(data.message);
       console.log("Response data:", data);
+      setChatBegin(true)
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -43,7 +45,11 @@ function App() {
         </a>
         <button className="sign-in-button">Sign In / Sign Up</button>
       </nav>
-      <header className="App-header">
+
+      <div>text</div> 
+
+      {!chatBegin && 
+        <header className="App-header">
         <p>Unlock Potential Together</p>
         <form onSubmit={handleSubmit}>
           <input
@@ -56,7 +62,25 @@ function App() {
           <button type="submit">Search</button>
         </form>
         <p>{output}</p>
-      </header>
+        </header>
+      }
+
+      {chatBegin && 
+        <header className="App-bottom">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            id="textInput"
+            placeholder="Let's find your perfect mentor..."
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+          <button type="submit">Search</button>
+        </form>
+        <p>{output}</p>
+        </header>
+      }
+      
     </div>
   );
 }

@@ -26,6 +26,16 @@ html {
   box-sizing: border-box;
 }
 
+.App-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  height: 100vh;
+  padding: 5vh;
+  box-sizing: border-box;
+}
+
 .App-header > h1 {
   font-size: 48px;
   font-weight: 300;
@@ -108,4 +118,13 @@ button {
 
 button:hover {
   background-color: #555;
+}
+
+.scrollable-text-box {
+  width: 100%; /* or any specific width */
+  height: 200px; /* Set a fixed height */
+  overflow-y: auto; /* Enables vertical scrolling if content overflows */
+  padding: 10px; /* Optional: Adds some padding inside the box */
+  border: 1px solid #ccc; /* Optional: Adds a border around the text box */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: Adds a subtle shadow for better UI */
 }
