@@ -4,8 +4,6 @@ from time import sleep
 from selenium import webdriver
 
 data = [["Name", "Title", "Bio"]]
-def find_next_page(page_source):
-    soup = BeautifulSoup(page_source, 'html.parser')
 
 def scrape_link_bios(link):
     # initialize driver and nagivate to link
