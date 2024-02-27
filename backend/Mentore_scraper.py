@@ -1,7 +1,7 @@
 import csv
 from time import sleep
-# imports
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 # defining new variable passing two parameters
 parameters = {
@@ -22,23 +22,23 @@ driver = webdriver.Chrome()
 driver.get('https://www.linkedin.com')
 
 # locate email form by_class_name
-username = driver.find_element('login-email')
+username = driver.find_element(By.ID, 'session_key')
 
 # send_keys() to simulate key strokes
-username.send_keys(parameters.linkedin_username)
+username.send_keys(parameters['linkedin_username'])
 
 # sleep for 0.5 seconds
 sleep(0.5)
 
 # locate password form by_class_name
-password = driver.find_element('login-password')
+password = driver.find_element(By.ID, 'session_password')
 
 # send_keys() to simulate key strokes
-password.send_keys(parameters.linkedin_password)
+password.send_keys(parameters['linkedin_password'])
 sleep(0.5)
 
 # locate submit button by_xpath
-sign_in_button = driver.find_element('//*[@type="submit"]')
+sign_in_button = driver.find_element(By.XPATH, '//*[@type="submit"]')
 
 # .click() to mimic button click
 sign_in_button.click()
