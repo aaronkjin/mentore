@@ -3,24 +3,20 @@
 import { useState, useRef, ChangeEvent, FormEvent } from "react";
 
 import styles from "../styles/Home.module.css";
-
-import Header from "../components/Header";
 import SearchForm from "../components/SearchForm";
-import SignInFooter from "../components/SignInFooter";
+import ChatDisplay from "@/components/ChatDisplay";
 
 export default function Home() {
   const [query, setQuery] = useState("");
+  const [results, setResults] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Form submitted");
 
     const fetchData = async () => {
       const endpoint = "http://54.218.124.218:5000/query";
-      const payload = {
-        message: query,
-      };
+      const payload = { message: query };
 
       try {
         const response = await fetch(endpoint, {
@@ -36,6 +32,7 @@ export default function Home() {
         }
 
         const data = await response.json();
+        setResults(data.message);
         console.log("Response data:", data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -43,7 +40,6 @@ export default function Home() {
     };
 
     fetchData();
-    console.log("User searched for:", query);
   };
 
   const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -62,6 +58,8 @@ export default function Home() {
         onQueryChange={handleTextChange}
         onSearchSubmit={handleSearch}
       />
+
+      {results && <ChatDisplay message={results} />}
     </div>
   );
 }
