@@ -27,14 +27,14 @@ html {
 }
 
 .App-header > h1 {
-  font-size: 48px; /* Adjust to match the mockup */
+  font-size: 48px;
   font-weight: 300;
   margin: 0;
   margin-bottom: 20px; /* Spacing between elements */
 }
 
 .App-header > p {
-  font-size: 24px; /* Adjust to match the mockup */
+  font-size: 24px;
   font-weight: 300;
   margin: 0;
   margin-bottom: 50px; /* Spacing between elements */
@@ -42,18 +42,16 @@ html {
 
 /* Additional styles to remove hyperlink formatting on h1 */
 a > h1 {
-  color: white; /* Ensures the color is the same as if it were not a link */
+  color: white;
   text-decoration: none !important;
-  cursor: default; /* Keeps the cursor as default instead of pointer */
+  cursor: default;
 }
 
-/* This is to ensure that the :visited state also doesn't change the color */
 a:visited > h1 {
   color: white;
   text-decoration: none !important;
 }
 
-/* This is to ensure that the :hover state also doesn't change the color or add decoration */
 a:hover > h1,
 a:focus > h1 {
   color: white;
@@ -67,8 +65,8 @@ nav {
   align-items: center;
   position: absolute;
   top: 0;
-  padding: 10; /* Remove padding at the top */
-  height: 60px; /* Adjust this as needed to reduce the space */
+  padding: 10;
+  height: 60px;
 }
 
 nav > .sign-in-button {
@@ -82,32 +80,32 @@ nav > .sign-in-button {
 
 form {
   display: flex;
-  flex-direction: row; /* Align input and button in a row */
+  flex-direction: row;
   align-items: center;
-  gap: 10px; /* Adjust spacing between input and button */
+  gap: 10px;
   width: 200%;
-  max-width: none; /* Remove max-width to allow form to be longer */
+  max-width: none;
 }
 
 input[type="text"] {
   font-size: 16px;
   padding: 15px 20px;
-  width: 100%; /* Adjust width to match the mockup */
-  border-radius: 20px; /* Rounded borders */
+  width: 100%;
+  border-radius: 20px;
   border: none;
-  margin-bottom: 0; /* No margin at the bottom */
+  margin-bottom: 0;
 }
 
 button {
   padding: 15px 20px;
   font-size: 16px;
-  background-color: #333; /* Dark grey button */
+  background-color: #333;
   color: white;
   border: none;
-  border-radius: 20px; /* Rounded borders */
+  border-radius: 20px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #555; /* Slightly lighter grey on hover */
+  background-color: #555;
 }
