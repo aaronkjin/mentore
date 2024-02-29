@@ -6,6 +6,7 @@ import csv
 import os
 import pickle  # Ensure pickle is imported
 import random
+import openai
 
 app = Flask(__name__)
 CORS(app)
@@ -16,6 +17,29 @@ CORS(app)
 client = OpenAI(api_key='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')
 
 
+
+#helper function hehe 
+def generate_summaries(mentor_bios):
+    summaries = []
+    for mentor, bio in mentor_bios:
+        try:
+            # Adjusting the API call according to the new syntax
+            response = client.chat.completions.create(
+                model="gpt-4",  # or "gpt-3.5-turbo" depending on your preference
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": f"Summarize this information in one sentence: {bio}"}
+                ]
+            )
+            # Extracting the content from the response according to the new structure
+            summary = response.choices[0].message.content
+            summaries.append((mentor, summary))
+        except Exception as e:
+            print(f"Error generating summary: {e}")
+            summaries.append("Summary not available")
+    return summaries
+
+#begin actual flask nonsense 
 csv_file_path = 'output.csv'
 mentor_data = {}  # Initialize as an empty dictionary
 precomputed_embeddings = {}
@@ -43,11 +67,34 @@ def query_bot():
     user_id = data['user_id']
     user_text = data['message']
 
+    # Initialize conversation history if not present
     if user_id not in conversations:
         conversations[user_id] = []
 
+    # Append the user's current message to their conversation history
     conversations[user_id].append({"role": "user", "content": user_text})
 
+    # Check if this is the first user message (excluding the current one)
+    if len(conversations[user_id]) == 1:
+        # It's the first message; generate top mentors list but skip GPT message generation
+        storage, descriptions = generate_initial_mentor_list(user_text)
+        initial_message = "Here are your 5 most likely mentors and their bios: " + "; ".join(descriptions)
+        conversations[user_id].append({"role": "assistant", "content": storage})
+        # Directly return the initial mentor suggestions without generating a GPT-4 response
+        return jsonify({"initial_message": initial_message, "assistant_response": ""})
+    else:
+        # Not the first message; generate a GPT-4 response based on conversation history
+        response = client.chat.completions.create(
+            model="gpt-4-turbo-preview",
+            messages=conversations[user_id]
+        )
+        assistant_response = response.choices[0].message.content
+        conversations[user_id].append({"role": "assistant", "content": assistant_response})
+        # No need to calculate or send the initial mentor suggestions again
+        return jsonify({"assistant_response": assistant_response})
+
+def generate_initial_mentor_list(user_text):
+    # Assuming precomputed_embeddings and mentor_data are already loaded
     user_embedding = client.embeddings.create(input=[user_text], model="text-embedding-3-small").data[0].embedding
 
     similarities = []
@@ -58,37 +105,20 @@ def query_bot():
     similarities.sort(key=lambda x: x[1], reverse=True)
     top_mentors = similarities[:5]
 
-    # Adjust to include mentor names and handle missing bios
-    descriptions = []
-    for mentor_name, _ in top_mentors:
-        bio = mentor_data.get(mentor_name, "Bio not available")
-        descriptions.append(f"{mentor_name}: {bio}")
+    pairs = [(mentor_name, mentor_data.get(mentor_name, "Bio not available")) for mentor_name, _ in top_mentors]
+    # Join the mentor: bio pairs into one string, separated by commas
+    storage = ", ".join([f"{mentor_name}: {bio}" for mentor_name, bio in pairs])
 
-    initial_message = "Here are your 5 most likely mentors and their bios: " + "; ".join(descriptions)
-    
-    conversations[user_id].append({"role": "assistant", "content": initial_message})
-    
-    for mentor_name, _ in top_mentors:
-        bio = mentor_data.get(mentor_name, "Bio not available")
-        # Use GPT-4 to generate a one-sentence summary for each bio
-        summary_response = client.completions.create(
-            model="text-davinci-003",
-            prompt=f"Summarize this in one sentence: {bio}",
-            max_tokens=60,
-            temperature=0.7
-        )
-        summary = summary_response.choices[0].text.strip()
-        descriptions.append(f"{mentor_name}: {summary}")
+    # Prepend the introductory sentence
+    storage = "These are the mentors and their bios we recommend for you based on your input request: " + storage
 
-    initial_message = "Here are your 5 most likely mentors and their one-sentence bios: " + "; ".join(descriptions)
-    
-    response = client.chat.completions.create(
-        model="gpt-4-turbo-preview",
-        messages=conversations[user_id]
-    )
-    assistant_response = response.choices[0].message.content
-    conversations[user_id].append({"role": "assistant that matches mentors to mentees. Answer any questions about the mentors. Be helpful and terse. If you are fed the first message request (asking for a mentor given information) - simply feed the mentor list from your context. If not answer the question they ask about the mentor matching.", "content": assistant_response})
-    return jsonify({"initial_message": initial_message, "assistant_response": assistant_response})
+    #storage = [f"{mentor_name}: {bio}" for mentor_name, bio in pairs]
+   
+    #summaries cus it yaps too much in the bios - todo: maybe we should precompute these just once altogether
+    mentor_summaries = generate_summaries(pairs)
+    descriptions = [f"{mentor}: {summary}" for mentor, summary in mentor_summaries]
+    return storage, descriptions
+
 
 @app.route("/disconnect", methods=['POST'])
 def disconnect():
