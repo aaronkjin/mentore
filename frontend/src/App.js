@@ -5,7 +5,7 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [output, setOutput] = useState("");
   const [chatBegin, setChatBegin] = useState(false);
-  const [userLogs, setUserLogs] = useState([]);
+  const [logs, setLogs] = useState([]);
 
   useEffect(() => {
     document.body.style.overflow = chatBegin ? "auto" : "hidden";
@@ -17,7 +17,7 @@ function App() {
     const temp = inputValue;
     const payload = { message: temp };
 
-    setUserLogs([...userLogs, temp]);
+    setLogs([...logs, [temp]]);
     setInputValue("");
     setChatBegin(true);
 
@@ -35,8 +35,13 @@ function App() {
       }
 
       const data = await response.json();
-      setOutput(data.message);
       console.log("Response data:", data);
+      const addedBotLogs = [...logs];
+      addedBotLogs[addedBotLogs.length - 1] = [
+        ...addedBotLogs[addedBotLogs.length - 1],
+        data,
+      ];
+      setLogs(addedBotLogs);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -73,10 +78,10 @@ function App() {
       ) : (
         <>
           <div className="chat-display">
-            {userLogs.map((userMessage, index) => {
+            {logs.map((userMessage, index) => {
               return (
                 <div key={index} className="user-message">
-                  {userMessage}
+                  {userMessage[0]}
                 </div>
               );
             })}
