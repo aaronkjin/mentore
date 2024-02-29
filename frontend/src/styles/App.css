@@ -107,6 +107,7 @@ html {
   height: 100vh;
   padding: 0;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .App-bottom {
@@ -114,11 +115,15 @@ html {
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  height: 100vh;
-  padding: 8vh;
+  padding-bottom: 2vh;
+  padding-top: 0.5vh;
   box-sizing: border-box;
   position: fixed;
   z-index: 1001;
+  width: 100%;
+  bottom: 0;
+  background-color: #191919; /* Assuming this is the color you want */
+  width: 100%; /* Ensure it covers the full width */
 }
 
 .App-header > h1 {
@@ -197,7 +202,7 @@ form {
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  width: 200%;
+  width: 100%;
   max-width: none;
 }
 
