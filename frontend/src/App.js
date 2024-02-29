@@ -74,7 +74,10 @@ function App() {
       {!chatBegin ? (
         <header className="App-header">
           <p>Unlock Potential Together</p>
-          <form onSubmit={handleSubmit}>
+          <form
+            style={{ width: "80%", maxWidth: "1000px" }}
+            onSubmit={handleSubmit}
+          >
             <input
               type="text"
               id="textInput"
@@ -98,7 +101,10 @@ function App() {
             })}
           </div>
           <header className="App-bottom">
-            <form style={{ width: "800px" }} onSubmit={handleSubmit}>
+            <form
+              style={{ width: "80%", maxWidth: "1000px" }}
+              onSubmit={handleSubmit}
+            >
               <input
                 type="text"
                 id="textInput"
