@@ -94,7 +94,11 @@ function App() {
           <div className="chat-display">
             {logs.map((userMessage, index) => {
               return (
-                <div key={index} className="user-message">
+                <div
+                  key={index}
+                  className="user-message"
+                  style={{ letterSpacing: "0.25px" }}
+                >
                   {userMessage[0]}
                 </div>
               );
