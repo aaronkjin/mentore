@@ -7,6 +7,9 @@ An LLM-integrated mentor-matching platform. Designed to connect individuals with
 To see the website up and running, go into the frontend directory, and run:
 
 ```bash
+# go into frontend
+cd frontend
+
 # run
 npm start
 ```
