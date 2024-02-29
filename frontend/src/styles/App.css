@@ -82,20 +82,21 @@ body,
 html {
   height: 100%;
   margin: 0;
+  overflow: hidden; /* Disables scrolling on the entire website */
   font-family: "NeueHaasRegular";
   background-color: #191919;
 }
 
 .App {
   text-align: center;
-  height: 100vh;
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Changed to flex-start to align content to the top */
   align-items: center;
   padding-top: 60px; /* Height of NavBar */
   padding-bottom: 60px; /* Height of SearchForm */
+  /* Removed the height: 100vh; */
 }
 
 .App-header {
@@ -117,7 +118,7 @@ html {
   padding: 8vh;
   box-sizing: border-box;
   position: fixed;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 .App-header > h1 {
@@ -153,18 +154,18 @@ a:focus > h1 {
 }
 
 nav {
-  width: 98%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
+  position: fixed; /* Fixed position keeps the nav at the top */
   top: 0;
-  padding: 10;
+  left: 0; /* Start from the very left */
+  right: 0; /* Stretch to the very right */
   height: 60px;
-  position: fixed;
-  left: 2;
-  right: 2;
-  z-index: 1000;
+  z-index: 1001; /* Higher than the content so it stays on top */
+  padding-top: 4px;
+  background-color: #191919; /* Assuming this is the color you want */
+  width: 100%; /* Ensure it covers the full width */
 }
 
 nav > .sign-in-button {
@@ -174,6 +175,21 @@ nav > .sign-in-button {
   color: white;
   border-radius: 20px;
   cursor: pointer;
+}
+
+.sign-in-button {
+  padding: 10px 20px;
+  background: #555;
+  border: 1px solid #555;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sign-in-button:hover {
+  background-color: #777;
+  color: white;
 }
 
 form {
@@ -197,15 +213,17 @@ input[type="text"] {
 button {
   padding: 15px 20px;
   font-size: 16px;
-  background-color: #333;
+  background-color: #555;
   color: white;
+  border: 1px solid #555;
   border: none;
   border-radius: 20px;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 button:hover {
-  background-color: #555;
+  background-color: #777;
 }
 
 .chat-display {
@@ -227,4 +245,31 @@ button:hover {
   margin: 5px 0;
   max-width: 70%;
   word-wrap: break-word;
+}
+
+.chat-display {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100vw; /* Full viewport width */
+  margin: 0; /* Reset margin to align with the screen edges */
+  padding: 20px 20px 20px 20px; /* padding on all sides */
+  overflow-y: auto; /* Makes chat display scrollable */
+  position: relative;
+  z-index: 0;
+  top: 0px; /* Push down by the height of the nav bar */
+  bottom: 0px; /* Push up by the height of the search bar */
+}
+
+.user-message {
+  background-color: #333;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  margin: 5px 20px; /* Margin on the right to prevent sticking to the edge */
+  max-width: calc(
+    100% - 40px
+  ); /* Prevents the message from touching the edges */
+  word-wrap: break-word;
+  align-self: flex-end; /* Aligns the message to the right */
 }
