@@ -11,7 +11,10 @@ app = Flask(__name__)
 CORS(app)
 
 # Load OpenAI API key from environment variable
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+#client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+
+client = OpenAI(api_key='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')
+
 
 csv_file_path = 'output.csv'
 mentor_data = {}  # Initialize as an empty dictionary
