@@ -1,12 +1,15 @@
 # Mentore
 
-An LLM-integrated mentor-matching platform. Designed to connect individuals with the perfect mentor tailored to their unique needs, preferences, and aspirations. Offers personalized mentorship connections that can help propel your personal and professional growth.
+An LLM-integrated mentor-matching platform. Designed to connect you with the perfect mentor tailored to your unique needs, preferences, and aspirations. Offers personalized mentorship connections that can help propel your personal and professional growth.
 
 ## Getting Started
 
 To see the website up and running, go into the frontend directory, and run:
 
 ```bash
+# go into frontend
+cd frontend
+
 # run
 npm start
 ```
@@ -46,6 +49,20 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 - RESTful API endpoints for querying and response handling
 - Cosine similarity for mentor matching logic
 - GPT-4 for generating mentor matches based on user queries
+
+## Sprint 3 Updates
+
+### Aaron
+
+### Daniel
+
+### Sarvesh
+
+### Andrew
+
+**This sprint:** This sprint I worked with Aaron to refactor and rebuild the entire frontend to use React and JavaScript (instead of our previous Next.js interface) because it was a lot more managable. I helped Dan with the scraper and we worked on pulling all the bios of the Stanford professors. Aaron and I worked primarily on just finishing up the frontend to work and build chat functionality with the backend API that Sarvesh was building.
+
+**Next sprint:** Next sprint, we hope to deploy the finalized code to a server and improve our imbeddings. We will also further improve our UI design and start adding more mentors and add a mentor sign up feature. Our goal is to expand our platform to as many mentors as possible to give users the biggest pool of people to choose from and thus find the best match.
 
 ## Sprint 2 Updates
 

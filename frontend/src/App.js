@@ -11,6 +11,13 @@ function App() {
     document.body.style.overflow = chatBegin ? "auto" : "hidden";
   }, [chatBegin]);
 
+  const resetChat = () => {
+    setChatBegin(false);
+    setInputValue("");
+    setLogs([]);
+    setOutput("");
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const endpoint = "http://54.218.124.218:5000/query";
@@ -50,14 +57,18 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <a
-          href="https://github.com/aaronkjin/mentore"
-          target="_blank"
-          rel="noopener noreferrer"
+        <div
+          onClick={resetChat}
+          style={{
+            paddingLeft: "10px",
+            cursor: "pointer",
+          }}
         >
           <h1>Mentore</h1>
-        </a>
-        <button className="sign-in-button">Sign In / Sign Up</button>
+        </div>
+        <div style={{ paddingRight: "10px" }}>
+          <button className="sign-in-button">Sign In / Sign Up</button>
+        </div>
       </nav>
 
       {!chatBegin ? (
@@ -87,7 +98,7 @@ function App() {
             })}
           </div>
           <header className="App-bottom">
-            <form onSubmit={handleSubmit}>
+            <form style={{ width: "800px" }} onSubmit={handleSubmit}>
               <input
                 type="text"
                 id="textInput"
