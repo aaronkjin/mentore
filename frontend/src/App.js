@@ -14,10 +14,10 @@ function App() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const endpoint = "http://54.218.124.218:5000/query";
-    const tmp = inputValue;
-    const payload = { message: tmp };
-    
-    setUserLogs([...userLogs, tmp])
+    const temp = inputValue;
+    const payload = { message: temp };
+
+    setUserLogs([...userLogs, temp]);
     setInputValue("");
     setChatBegin(true);
 
@@ -72,9 +72,15 @@ function App() {
         </header>
       ) : (
         <>
-          {userLogs.map(v => {
-            return <div>{v}</div>
-          })}
+          <div className="chat-display">
+            {userLogs.map((userMessage, index) => {
+              return (
+                <div key={index} className="user-message">
+                  {userMessage}
+                </div>
+              );
+            })}
+          </div>
           <header className="App-bottom">
             <form onSubmit={handleSubmit}>
               <input
