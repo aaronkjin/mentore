@@ -65,14 +65,29 @@ def query_bot():
         descriptions.append(f"{mentor_name}: {bio}")
 
     initial_message = "Here are your 5 most likely mentors and their bios: " + "; ".join(descriptions)
+    
+    conversations[user_id].append({"role": "assistant", "content": initial_message})
+    
+    for mentor_name, _ in top_mentors:
+        bio = mentor_data.get(mentor_name, "Bio not available")
+        # Use GPT-4 to generate a one-sentence summary for each bio
+        summary_response = client.completions.create(
+            model="text-davinci-003",
+            prompt=f"Summarize this in one sentence: {bio}",
+            max_tokens=60,
+            temperature=0.7
+        )
+        summary = summary_response.choices[0].text.strip()
+        descriptions.append(f"{mentor_name}: {summary}")
 
+    initial_message = "Here are your 5 most likely mentors and their one-sentence bios: " + "; ".join(descriptions)
+    
     response = client.chat.completions.create(
         model="gpt-4-turbo-preview",
         messages=conversations[user_id]
     )
     assistant_response = response.choices[0].message.content
-    conversations[user_id].append({"role": "assistant", "content": assistant_response})
-
+    conversations[user_id].append({"role": "assistant that matches mentors to mentees. Answer any questions about the mentors. Be helpful and terse. If you are fed the first message request (asking for a mentor given information) - simply feed the mentor list from your context. If not answer the question they ask about the mentor matching.", "content": assistant_response})
     return jsonify({"initial_message": initial_message, "assistant_response": assistant_response})
 
 @app.route("/disconnect", methods=['POST'])
