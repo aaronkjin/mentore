@@ -60,9 +60,9 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 
 ### Daniel
 
-**This sprint:**
+**This sprint:** This sprint, I built the scraper. Initially, I built a scraper LinkedIn, but it didn't work -- LinkedIn has privacy and scraping regulations that blocked our scaper. Then, I tried to make a dynamic scraper with a headless driver to simulate a human but it also didn't work as it was too slow and inefficient. I then tried to gain access to LinkedIn's API but I soon realized it would take up to a month to authorize. As a result, I pivoted and attempted to build a scraper for [Stanford Alumni Mentoring](https://mentoring.stanford.edu/). However, for some weird reason, there was no page that displayed every alumni mentor (bad product manager). Finally, I decided to simply scrape the Faculty, Research, and Teaching Staff pages on the [Stanford Profiles Directory](https://profiles.stanford.edu/). This attempt worked with a dynamic scraper that scrolled through every department and page using a headless driver. Specifically, I parsed the names, professional titles, and bios of 7,5000+ Stanford faculty mentors into a .csv file that we then passed into the OpenAI embeddings API to precompute semantic embeddings.
 
-**Next sprint:**
+**Next sprint:** Next sprint, I aim to build more scrapers for other large databases and automate the scraping (in case some directories update). I also want to create a custom database that stores all the mentor data rather than relying on a .csv file and build a RAG system to reduce the latency of our chatbot (currently ~15-30 secs). Finally, I want to contribute to the frontend.
 
 ### Sarvesh
 
@@ -74,7 +74,7 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 
 **This sprint:** This sprint, I worked with Aaron to refactor and rebuild the entire frontend to use React and JavaScript (instead of our previous Next.js interface) because it was a lot more managable. I helped Dan with the scraper and we worked on pulling all the bios of the Stanford professors. Aaron and I worked primarily on just finishing up the frontend to work and build chat functionality with the backend API that Sarvesh was building.
 
-**Next sprint:** Next sprint, we hope to deploy the finalized code to a server and improve our imbeddings. We will also further improve our UI design and start adding more mentors and add a mentor sign up feature. Our goal is to expand our platform to as many mentors as possible to give users the biggest pool of people to choose from and thus find the best match.
+**Next sprint:** Next sprint, we hope to deploy the finalized code to a server and improve our embeddings. We will also further improve our UI design and start adding more mentors and add a mentor sign up feature. Our goal is to expand our platform to as many mentors as possible to give users the biggest pool of people to choose from and thus find the best match.
 
 ## Sprint 2 Updates
 
