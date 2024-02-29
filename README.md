@@ -98,7 +98,8 @@ Developed the frontend application from scratch, focusing on key UI features to 
 
 **Next sprint:**
 Fixing the Backend: This involves a thorough review and enhancement of our current backend infrastructure to support the increased complexity and functionality of our mentor-matching platform. Ensuring stability, scalability, and security will be key aspects of this work.
-Improving Cosine Similarity Functionality: Currently, our platform is not matching kids to mentors as accurately as we intend. Sarvesh will be dedicating time to refine the algorithm, specifically focusing on the cosine similarity calculations that underpin our matching logic. This will involve:
+
+Improving Cosine Similarity Functionality: Currently, our platform is not matching kids to mentors as accurately as we intend. I will be dedicating time to refine the algorithm, specifically focusing on the cosine similarity calculations that underpin our matching logic.
 
 ### Andrew
 
