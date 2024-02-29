@@ -1,3 +1,39 @@
+@font-face {
+  font-family: "MonoSpec";
+  src: url("../public/fonts/monospec.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "NeueHaasExtraLight";
+  src: url("../public/fonts/NHaasGroteskExtraLight.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "NeueHaasLight";
+  src: url("../public/fonts/NHaasGroteskLight.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "NeueHaasRegular";
+  src: url("../public/fonts//NHaasGroteskRegular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "NeueHaasMedium";
+  src: url("../public/fonts/NHaasGroteskMedium.ttf") format("truetype");
+  font-weight: medium;
+}
+
+@font-face {
+  font-family: "NeueHaasBold";
+  src: url("../public/fonts/NHaasGroteskBold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+body {
+  font-family: "NeueHaasRegular", sans-serif !important;
+}
+
 body,
 html {
   height: 100%;
