@@ -1,32 +1,32 @@
 @font-face {
   font-family: "MonoSpec";
-  src: url("../public/fonts/monospec.otf") format("opentype");
+  src: url("../../public/fonts/monospec.otf") format("opentype");
 }
 
 @font-face {
   font-family: "NeueHaasExtraLight";
-  src: url("../public/fonts/NHaasGroteskExtraLight.ttf") format("truetype");
+  src: url("../../public/fonts/NHaasGroteskExtraLight.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "NeueHaasLight";
-  src: url("../public/fonts/NHaasGroteskLight.ttf") format("truetype");
+  src: url("../../public/fonts/NHaasGroteskLight.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "NeueHaasRegular";
-  src: url("../public/fonts//NHaasGroteskRegular.ttf") format("truetype");
+  src: url("../../public/fonts//NHaasGroteskRegular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "NeueHaasMedium";
-  src: url("../public/fonts/NHaasGroteskMedium.ttf") format("truetype");
+  src: url("../../public/fonts/NHaasGroteskMedium.ttf") format("truetype");
   font-weight: medium;
 }
 
 @font-face {
   font-family: "NeueHaasBold";
-  src: url("../public/fonts/NHaasGroteskBold.ttf") format("truetype");
+  src: url("../../public/fonts/NHaasGroteskBold.ttf") format("truetype");
   font-weight: bold;
 }
 
@@ -34,11 +34,55 @@ body {
   font-family: "NeueHaasRegular", sans-serif !important;
 }
 
+.font-header {
+  font-family: "NeueHaasBold" !important;
+  font-size: 72px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 72px */
+}
+
+.font-header-2 {
+  font-family: "NeueHaasMedium" !important;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 48px */
+}
+
+.font-light {
+  font-family: "NeueHaasLight" !important;
+}
+
+.font-medium {
+  font-family: "NeueHaasMedium" !important;
+}
+.font-bold {
+  font-family: "NeueHaasBold" !important;
+}
+
+.font-body {
+  font-family: "NeueHaasRegular" !important;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 450;
+  line-height: 140%; /* 22.4px */
+  letter-spacing: 0.32px;
+}
+
+.font-eyebrow-1 {
+  font-family: "NeueHaasMedium" !important;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%; /* 19.2px */
+}
+
 body,
 html {
   height: 100%;
   margin: 0;
-  font-family: "Arial", sans-serif;
+  font-family: "NeueHaasRegular";
   background-color: #191919;
 }
 
