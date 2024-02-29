@@ -60,7 +60,15 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 
 ### Daniel
 
+**This sprint:**
+
+**Next sprint:**
+
 ### Sarvesh
+
+**This sprint:** This sprint, I rebuilt the backend to add the full feature set: semantic search with the embeddings similarity, chat memory, multiple users can chat, mentor context for continued question answering etc. I built in the chat functionality - where you can chat with GPT 4 about your options in mentors. You have memory for the chat -where when you talk to the bot it remembers the previous messages within a chat to come up with future responses. It has the ability to handle concurrent users - where you can have user 1 and user 2 and user 3 concurrently using the application, but it isn't quite fast and is not yet ready for scaling. It'll be running when I can create a load balancer and scheduler essentially (maybe round robin) - or a way to batch execute the prompts that its trying to execute - at the moment it is sequential. This is fine as the front end isn't fully ready yet but we can fix that once that uath page on the front end is ready - once we can actually handle multiple users on the frontend. But technically we can handle multiple users - we have the statefuleness built into the application.
+
+**Next sprint:** I need to build a load balancer/scheduler and a way to batch execute GPT 4 prompts. I also need to build out RAG and a web agent powered by GPT4 for better results given more diverse data on the mentors. I want to help build a dynamic scraper and a backend database with a redis cache layer to store the data for quick access etc.
 
 ### Andrew
 
