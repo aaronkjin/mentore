@@ -1,6 +1,6 @@
 # Mentore
 
-An LLM-integrated mentor-matching platform. Designed to connect individuals with the perfect mentor tailored to their unique needs, preferences, and aspirations. Offers personalized mentorship connections that can help propel your personal and professional growth.
+An LLM-integrated mentor-matching platform. Designed to connect you with the perfect mentor tailored to your unique needs, preferences, and aspirations. Offers personalized mentorship connections that can help propel your personal and professional growth.
 
 ## Getting Started
 
