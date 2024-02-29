@@ -54,13 +54,17 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 
 ### Aaron
 
+**This sprint:** During this sprint, we refactored our frontend code to be suitable with React + JS (using create-react-app), rather than with TypeScript (and Next.js). We did this because our group members were more comfortable with reading and writing JavaScript as opposed to TypeScript, allowing more hands to work on the frontend logic if need be. Specifically with the frontend, I implemented chatBegin states such that the initial screen showcases our "landing page" (with the "Unlock potential together" motto), and upon user search of their text query, it shows an updated page of their responses in chat format (similar to an iMessage feel). I finetuned other various frontend tweaks such as adding our own font packages, redirecting users back to the landing page upon pressing "Mentore," creating chat bubbles for the users' text inputs, and more. It's the details that matter for me.
+
+**Next sprint:** Next spring, I will work on completing the "Sign In / Sign Up" button so that users have a way of going through the auth system. This way, we will have unique user instances so that different users can interact and respond to our conversational agent. Other than building out the authentication, I will continue to make iterative frontend changes so that we have our finalized MVP for our final sprint.
+
 ### Daniel
 
 ### Sarvesh
 
 ### Andrew
 
-**This sprint:** This sprint I worked with Aaron to refactor and rebuild the entire frontend to use React and JavaScript (instead of our previous Next.js interface) because it was a lot more managable. I helped Dan with the scraper and we worked on pulling all the bios of the Stanford professors. Aaron and I worked primarily on just finishing up the frontend to work and build chat functionality with the backend API that Sarvesh was building.
+**This sprint:** This sprint, I worked with Aaron to refactor and rebuild the entire frontend to use React and JavaScript (instead of our previous Next.js interface) because it was a lot more managable. I helped Dan with the scraper and we worked on pulling all the bios of the Stanford professors. Aaron and I worked primarily on just finishing up the frontend to work and build chat functionality with the backend API that Sarvesh was building.
 
 **Next sprint:** Next sprint, we hope to deploy the finalized code to a server and improve our imbeddings. We will also further improve our UI design and start adding more mentors and add a mentor sign up feature. Our goal is to expand our platform to as many mentors as possible to give users the biggest pool of people to choose from and thus find the best match.
 
