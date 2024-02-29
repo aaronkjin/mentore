@@ -15,6 +15,8 @@ function App() {
     const endpoint = "http://54.218.124.218:5000/query";
     const payload = { message: inputValue };
 
+    setChatBegin(true);
+
     try {
       const response = await fetch(endpoint, {
         method: "POST",
@@ -31,7 +33,6 @@ function App() {
       const data = await response.json();
       setOutput(data.message);
       console.log("Response data:", data);
-      setChatBegin(true);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -50,7 +51,7 @@ function App() {
         <button className="sign-in-button">Sign In / Sign Up</button>
       </nav>
 
-      {!chatBegin && (
+      {!chatBegin ? (
         <header className="App-header">
           <p>Unlock Potential Together</p>
           <form onSubmit={handleSubmit}>
@@ -63,26 +64,26 @@ function App() {
             />
             <button type="submit">Search</button>
           </form>
-          <p>{output}</p>
+          {/* <p>{output}</p> */}
         </header>
-      )}
+      ) : (
+        <>
+          <div>{inputValue}</div>
+          <header className="App-bottom">
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                id="textInput"
+                placeholder="Ask a follow-up..."
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+              <button type="submit">Search</button>
+            </form>
 
-      {/* <div className="chat-display">This is a test</div> */}
-
-      {chatBegin && (
-        <header className="App-bottom">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              id="textInput"
-              placeholder="Ask a follow-up..."
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-            <button type="submit">Search</button>
-          </form>
-          <p>{output}</p>
-        </header>
+            {/* <p>{output}</p> */}
+          </header>
+        </>
       )}
     </div>
   );
