@@ -5,6 +5,7 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [output, setOutput] = useState("");
   const [chatBegin, setChatBegin] = useState(false);
+  const [userLogs, setUserLogs] = useState([]);
 
   useEffect(() => {
     document.body.style.overflow = chatBegin ? "auto" : "hidden";
@@ -13,8 +14,11 @@ function App() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const endpoint = "http://54.218.124.218:5000/query";
-    const payload = { message: inputValue };
-
+    const tmp = inputValue;
+    const payload = { message: tmp };
+    
+    setUserLogs([...userLogs, tmp])
+    setInputValue("");
     setChatBegin(true);
 
     try {
@@ -68,7 +72,9 @@ function App() {
         </header>
       ) : (
         <>
-          <div>{inputValue}</div>
+          {userLogs.map(v => {
+            return <div>{v}</div>
+          })}
           <header className="App-bottom">
             <form onSubmit={handleSubmit}>
               <input
