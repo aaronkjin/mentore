@@ -24,7 +24,7 @@ function App() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Add the user message to the logs with a loading state
+    // User message
     const newLogEntry = { user: inputValue, bot: "", loading: true };
     setLogs((logs) => [...logs, newLogEntry]);
 
@@ -52,18 +52,22 @@ function App() {
       const data = await response.json();
       console.log("Response data:", data);
 
-      // Update the last log entry with the bot response
+      // Bot message
       setLogs((currentLogs) =>
         currentLogs.map((log, index) => {
           if (index === currentLogs.length - 1) {
-            return { ...log, bot: data.initial_message, loading: false };
+            const responseMessage =
+              currentLogs.length === 1
+                ? data.initial_message
+                : data.assistant_response;
+            return { ...log, bot: responseMessage, loading: false };
           }
           return log;
         })
       );
     } catch (error) {
       console.error("Error fetching data:", error);
-      // Update the last log entry to remove the loading state and keep the user message
+      // Update last log entry to remove loading state and keep user message
       setLogs((currentLogs) =>
         currentLogs.map((log, index) => {
           if (index === currentLogs.length - 1) {
