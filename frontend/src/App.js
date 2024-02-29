@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import "./styles/App.css";
+
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -20,16 +23,21 @@ function App() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const endpoint = "http://54.218.124.218:5000/query";
-    const temp = inputValue;
-    const payload = { message: temp };
 
-    setLogs([...logs, [temp]]);
+    // Add the user message to the logs with a loading state
+    const newLogEntry = { user: inputValue, bot: "", loading: true };
+    setLogs((logs) => [...logs, newLogEntry]);
+
     setInputValue("");
     setChatBegin(true);
 
+    const payload = {
+      user_id: "1",
+      message: newLogEntry.user,
+    };
+
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch("http://52.10.255.219:5000/query", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,14 +51,27 @@ function App() {
 
       const data = await response.json();
       console.log("Response data:", data);
-      const addedBotLogs = [...logs];
-      addedBotLogs[addedBotLogs.length - 1] = [
-        ...addedBotLogs[addedBotLogs.length - 1],
-        data,
-      ];
-      setLogs(addedBotLogs);
+
+      // Update the last log entry with the bot response
+      setLogs((currentLogs) =>
+        currentLogs.map((log, index) => {
+          if (index === currentLogs.length - 1) {
+            return { ...log, bot: data.initial_message, loading: false };
+          }
+          return log;
+        })
+      );
     } catch (error) {
       console.error("Error fetching data:", error);
+      // Update the last log entry to remove the loading state and keep the user message
+      setLogs((currentLogs) =>
+        currentLogs.map((log, index) => {
+          if (index === currentLogs.length - 1) {
+            return { ...log, loading: false };
+          }
+          return log;
+        })
+      );
     }
   };
 
@@ -64,7 +85,7 @@ function App() {
             cursor: "pointer",
           }}
         >
-          <h1>Mentore</h1>
+          <h1 style={{ fontSize: "28px" }}>Mentore</h1>
         </div>
         <div style={{ paddingRight: "10px" }}>
           <button className="sign-in-button">Sign In / Sign Up</button>
@@ -73,7 +94,7 @@ function App() {
 
       {!chatBegin ? (
         <header className="App-header">
-          <p>Unlock Potential Together</p>
+          <p style={{ fontWeight: "medium" }}>Unlock Potential Together</p>
           <form
             style={{ width: "80%", maxWidth: "1000px" }}
             onSubmit={handleSubmit}
@@ -92,17 +113,28 @@ function App() {
       ) : (
         <>
           <div className="chat-display">
-            {logs.map((userMessage, index) => {
-              return (
+            {logs.map((logEntry, index) => (
+              <React.Fragment key={index}>
                 <div
-                  key={index}
                   className="user-message"
-                  style={{ letterSpacing: "0.25px" }}
+                  style={{ letterSpacing: "0.25px", wordSpacing: "1.25px" }}
                 >
-                  {userMessage[0]}
+                  {logEntry.user}
                 </div>
-              );
-            })}
+                {logEntry.loading ? (
+                  <SkeletonTheme color="#202020" highlightColor="#444">
+                    <Skeleton count={3} />
+                  </SkeletonTheme>
+                ) : (
+                  <div
+                    className="bot-message"
+                    style={{ letterSpacing: "0.25px", wordSpacing: "1.25px" }}
+                  >
+                    {logEntry.bot}
+                  </div>
+                )}
+              </React.Fragment>
+            ))}
           </div>
           <header className="App-bottom">
             <form

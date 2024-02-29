@@ -132,24 +132,6 @@ html {
   margin-bottom: 35px;
 }
 
-/* Additional styles to remove hyperlink formatting on h1 */
-a > h1 {
-  color: white;
-  text-decoration: none !important;
-  cursor: default;
-}
-
-a:visited > h1 {
-  color: white;
-  text-decoration: none !important;
-}
-
-a:hover > h1,
-a:focus > h1 {
-  color: white;
-  text-decoration: none !important;
-}
-
 nav {
   display: flex;
   justify-content: space-between;
@@ -247,7 +229,6 @@ button:hover {
 .chat-display {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   width: 100vw;
   margin: 0;
   padding: 20px 20px 20px 20px;
@@ -261,10 +242,23 @@ button:hover {
 .user-message {
   background-color: #333;
   color: white;
-  padding: 10px 15px;
+  padding: 10px 20px;
   border-radius: 20px;
   margin: 5px 20px;
-  max-width: calc(100% - 40px);
+  max-width: calc(100% - 300px);
   word-wrap: break-word;
   align-self: flex-end;
+  text-align: left;
+}
+
+.bot-message {
+  background-color: #444;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin: 5px 20px;
+  max-width: calc(100% - 300px);
+  word-wrap: break-word;
+  align-self: flex-start;
+  text-align: left;
 }
