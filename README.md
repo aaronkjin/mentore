@@ -47,7 +47,6 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 - Cosine similarity for mentor matching logic
 - GPT-4 for generating mentor matches based on user queries
 
-
 ## Sprint 3 Updates
 
 ### Aaron
@@ -58,9 +57,9 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 
 ### Andrew
 
-**This sprint:** This sprint I worked with Aaron to refactor and rebuild the entire frontend to use React because it was a lot more managable. I helped Dan with the scraper and we worked on pulling all the bios of the stanford professors. Aaron and I worked primarily on just finishing up the frontend to work and build chat functionality with the backend api that Sarvesh was building.
+**This sprint:** This sprint I worked with Aaron to refactor and rebuild the entire frontend to use React and JavaScript (instead of our previous Next.js interface) because it was a lot more managable. I helped Dan with the scraper and we worked on pulling all the bios of the Stanford professors. Aaron and I worked primarily on just finishing up the frontend to work and build chat functionality with the backend API that Sarvesh was building.
 
-**Next sprint:** Next sprint we hope to deploy the finalized code to a server and improve our imbeddings. We will also further improve our UI design and start adding more mentors and add a mentor sign up feature. Our goal is to expand our platform to as many mentors as possible to give users the biggest pool of people to choose from and thus find the best match.
+**Next sprint:** Next sprint, we hope to deploy the finalized code to a server and improve our imbeddings. We will also further improve our UI design and start adding more mentors and add a mentor sign up feature. Our goal is to expand our platform to as many mentors as possible to give users the biggest pool of people to choose from and thus find the best match.
 
 ## Sprint 2 Updates
 
