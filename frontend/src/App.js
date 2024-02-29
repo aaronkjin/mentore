@@ -5,7 +5,7 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [output, setOutput] = useState("");
   const [chatBegin, setChatBegin] = useState(false);
-  const [userLogs, setUserLogs] = useState([]);
+  const [logs, setLogs] = useState([]);
 
   useEffect(() => {
     document.body.style.overflow = chatBegin ? "auto" : "hidden";
@@ -17,7 +17,7 @@ function App() {
     const tmp = inputValue;
     const payload = { message: tmp };
     
-    setUserLogs([...userLogs, tmp])
+    setLogs([...logs, [tmp]])
     setInputValue("");
     setChatBegin(true);
 
@@ -35,8 +35,10 @@ function App() {
       }
 
       const data = await response.json();
-      setOutput(data.message);
       console.log("Response data:", data);
+      const addedBotLogs = [...logs];
+      addedBotLogs[addedBotLogs.length - 1] = [...addedBotLogs[addedBotLogs.length - 1], data]
+      setLogs(addedBotLogs);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -72,8 +74,8 @@ function App() {
         </header>
       ) : (
         <>
-          {userLogs.map(v => {
-            return <div>{v}</div>
+          {logs.map(v => {
+            return <div>{v[0]}</div>
           })}
           <header className="App-bottom">
             <form onSubmit={handleSubmit}>
