@@ -3,28 +3,36 @@ from flask_cors import CORS
 from openai import OpenAI
 from scipy.spatial import distance
 import csv
-import json
+import os
+import pickle  # Ensure pickle is imported
+import random
 
 app = Flask(__name__)
 CORS(app)
 
-csv_file_path = 'mentore_data.csv'
-mentor_data = []
+# Load OpenAI API key from environment variable
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+
+csv_file_path = 'output.csv'
+mentor_data = {}  # Initialize as an empty dictionary
 precomputed_embeddings = {}
 
-conversations = {}  # Store conversations by user_id
-
+# Load and parse CSV data
 with open(csv_file_path, mode='r', encoding='utf-8') as file:
     csv_reader = csv.DictReader(file)
-    for index, row in enumerate(csv_reader):
-        mentor_data.append(row)
-        # Use index as a string for unique identification, assuming no 'id' field
-        mentor_id = str(index)
-        row_string = ', '.join(row.values())
-        # Update this line with your actual API key
-        client = OpenAI(api_key='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')
-        embedding = client.embeddings.create(input=[row_string], model="text-embedding-3-small").data[0].embedding
-        precomputed_embeddings[mentor_id] = embedding
+    for row in csv_reader:
+        mentor_name = row['Name']
+        mentor_data[mentor_name] = row['Bio']
+
+# Load precomputed embeddings
+pickle_file_path = 'precomputed_embeddings.pkl'
+try:
+    with open(pickle_file_path, 'rb') as pickle_file:
+        precomputed_embeddings = pickle.load(pickle_file)
+except FileNotFoundError:
+    print("Pickle file not found. Please ensure embeddings are precomputed.")
+
+conversations = {}
 
 @app.route("/query", methods=['POST'])
 def query_bot():
@@ -40,15 +48,20 @@ def query_bot():
     user_embedding = client.embeddings.create(input=[user_text], model="text-embedding-3-small").data[0].embedding
 
     similarities = []
-    for mentor_id, embedding in precomputed_embeddings.items():
+    for mentor_name, embedding in precomputed_embeddings.items():
         similarity = 1 - distance.cosine(user_embedding, embedding)
-        similarities.append((mentor_id, similarity))
+        similarities.append((mentor_name, similarity))
 
     similarities.sort(key=lambda x: x[1], reverse=True)
     top_mentors = similarities[:5]
 
-    descriptions = [mentor_data[int(mentor_id)]["description"] for mentor_id, _ in top_mentors]
-    initial_message = "Here are your 5 most likely mentors and their descriptions: " + ", ".join(descriptions)
+    # Adjust to include mentor names and handle missing bios
+    descriptions = []
+    for mentor_name, _ in top_mentors:
+        bio = mentor_data.get(mentor_name, "Bio not available")
+        descriptions.append(f"{mentor_name}: {bio}")
+
+    initial_message = "Here are your 5 most likely mentors and their bios: " + "; ".join(descriptions)
 
     response = client.chat.completions.create(
         model="gpt-4-turbo-preview",
@@ -57,7 +70,7 @@ def query_bot():
     assistant_response = response.choices[0].message.content
     conversations[user_id].append({"role": "assistant", "content": assistant_response})
 
-    return jsonify({"message": assistant_response})
+    return jsonify({"initial_message": initial_message, "assistant_response": assistant_response})
 
 @app.route("/disconnect", methods=['POST'])
 def disconnect():
@@ -70,5 +83,5 @@ def disconnect():
     return jsonify({"message": "Conversation data deleted for user_id: {}".format(user_id)})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
