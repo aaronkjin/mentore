@@ -19,31 +19,25 @@ def scrape_link_bios(link):
 
     person_elements = soup.find_all('div', class_='mini-profile')
 
-    # Find all relevant elements (name, title, bio)
-    name_elements = soup.find_all('h4')
-    title_elements = soup.find_all('h5')
-    bio_elements = soup.find_all('span', class_='line-clamp')
-    contact_info_elements = soup.find_all('div', class_='detail detail-section')
+    for person in person_elements:
+        name_element = person.find('h4')
+        title_element = person.find('h5')
+        bio_element = person.find('span', class_='line-clamp')
+        contact_info_element = person.find('div', class_='detail detail-section')
 
-    # print(len(name_elements))
-    # print(len(title_elements))
-    # print(len(bio_elements))
-    # print(len(contact_info_elements))
-
-
-    # Iterate over all elements and extract text
-    for i in range(len(name_elements)):
         cur = []
-        cur.append((str)(name_elements[i].get_text(strip=True)))
-        cur.append((str)(title_elements[i].get_text(strip=True)))
-        cur.append((str)(bio_elements[i].get_text(strip=True)))
+        cur.append((str)(name_element.get_text(strip=True)))
+        cur.append((str)(title_element.get_text(strip=True)))
+        cur.append((str)(bio_element.get_text(strip=True)))
 
-        email_elements = contact_info_elements[i].find_all('a', href=lambda href: href and href.startswith('mailto:'))
-        if email_elements:
-            cur.append((str) (email_elements[0]['href'].replace('mailto:', '')))
+        if contact_info_element:
+            email_element = contact_info_element.find('a', href=lambda href: href and href.startswith('mailto:'))
+            if email_element:
+                cur.append((str) (email_element['href'].replace('mailto:', '')))
+            else:
+                cur.append("email is unavailable")
         else:
-            cur.append("email not found")
-
+            cur.append("email is unavailable")
         data.append(cur)
 
     # find and check next page button
@@ -56,11 +50,11 @@ def scrape_link_bios(link):
 if __name__ == "__main__":
     departments = [
         "graduate-school-of-business",
-        # "graduate-school-of-education",
-        # "school-of-engineering",
-        # "school-of-humanities-and-sciences",
-        # "school-of-medicine",
-        # "stanford-doerr-school-of-sustainability"
+        "graduate-school-of-education",
+        "school-of-engineering",
+        "school-of-humanities-and-sciences",
+        "school-of-medicine",
+        "stanford-doerr-school-of-sustainability"
     ]
 
     for department in departments:
@@ -68,7 +62,7 @@ if __name__ == "__main__":
         while link is not None:
             link = scrape_link_bios(link)
     
-    filename = 'new_output.csv'
+    filename = 'backend/new_mentore_data.csv'
 
     # write all data into a CSV file
     with open(filename, 'w', newline='') as file:
