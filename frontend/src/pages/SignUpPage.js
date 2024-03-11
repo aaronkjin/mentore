@@ -46,6 +46,7 @@ export default function SignUpPage() {
             id="inputID"
             placeholder="Gavin Belson"
             className="mentor-input"
+            style={{ outlineColor: "#999" }}
           />
         </div>
 
@@ -59,6 +60,7 @@ export default function SignUpPage() {
             id="inputID"
             placeholder="CEO of Hooli"
             className="mentor-input"
+            style={{ outlineColor: "#999" }}
           />
         </div>
 
@@ -73,6 +75,7 @@ export default function SignUpPage() {
             placeholder="
             As Hooli's visionary CEO, I tackle Silicon Valley's challenges..."
             className="mentor-bio"
+            style={{ outlineColor: "#999" }}
           />
         </div>
 

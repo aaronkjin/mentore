@@ -82,6 +82,7 @@ function MainPage({ onResetChat }) {
               placeholder="Let's find your perfect mentor..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              style={{ outlineColor: "#999" }}
             />
             <button type="submit">Search</button>
           </form>
@@ -126,6 +127,7 @@ function MainPage({ onResetChat }) {
                 placeholder="Ask a follow-up..."
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
+                style={{ outlineColor: "#999" }}
               />
               <button type="submit">Search</button>
             </form>
