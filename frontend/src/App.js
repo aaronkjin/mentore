@@ -13,6 +13,10 @@ function App() {
     setDisplaySignUp(false);
   };
 
+  const toggleSignUp = () => {
+    setDisplaySignUp(!displaySignUp);
+  };
+
   return (
     <div className="App">
       <nav>
@@ -23,12 +27,15 @@ function App() {
           <h1 style={{ fontSize: "28px" }}>Mentore</h1>
         </div>
         <div style={{ paddingRight: "10px" }}>
-          <button
-            onClick={() => setDisplaySignUp(true)}
-            className="sign-in-button"
-          >
-            Become a Mentor!
-          </button>
+          {displaySignUp ? (
+            <button onClick={resetChat} className="sign-in-button">
+              Go Back
+            </button>
+          ) : (
+            <button onClick={toggleSignUp} className="sign-in-button">
+              Become a Mentor!
+            </button>
+          )}
         </div>
       </nav>
       {displaySignUp ? (
