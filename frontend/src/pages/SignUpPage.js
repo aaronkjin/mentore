@@ -10,6 +10,7 @@ export default function SignUpPage() {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
 
+  // Adds new mentor to our database of mentors
   function handleSubmit(e) {
     e.preventDefault();
     const msg = ref(database, "bios/" + Date.now());
@@ -35,10 +36,14 @@ export default function SignUpPage() {
       <header className="Signup-header">
         <p className="font-signup-header">Empower the Future, Guide Today</p>
       </header>
-      <form onSubmit={handleSubmit} className="mentor-container">
+      <form
+        onSubmit={handleSubmit}
+        className="mentor-container"
+        autocomplete="off"
+      >
         {/* Name */}
         <div className="form-group">
-          <label className="form-label">Name: </label>
+          <label className="form-label">Name:</label>
           <input
             type="text"
             value={name}
@@ -52,7 +57,7 @@ export default function SignUpPage() {
 
         {/* Title */}
         <div className="form-group">
-          <label className="form-label">Title: </label>
+          <label className="form-label">Title:</label>
           <input
             type="text"
             value={title}
@@ -66,7 +71,7 @@ export default function SignUpPage() {
 
         {/* Bio */}
         <div className="form-group">
-          <label className="form-label">Bio: </label>
+          <label className="form-label">Bio:</label>
           <input
             type="text"
             value={bio}

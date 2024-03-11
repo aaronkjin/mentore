@@ -75,6 +75,7 @@ function MainPage({ onResetChat }) {
           <form
             style={{ width: "80%", maxWidth: "1000px" }}
             onSubmit={handleSubmit}
+            autocomplete="off"
           >
             <input
               type="text"
@@ -120,6 +121,7 @@ function MainPage({ onResetChat }) {
             <form
               style={{ width: "80%", maxWidth: "1000px" }}
               onSubmit={handleSubmit}
+              autocomplete="off"
             >
               <input
                 type="text"
