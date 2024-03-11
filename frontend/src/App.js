@@ -1,4 +1,4 @@
-import SignUpPage from './SignUpPage';
+import SignUpPage from "./SignUpPage";
 import React, { useState, useEffect, Fragment } from "react";
 import "./styles/App.css";
 
@@ -93,80 +93,87 @@ function App() {
           <h1 style={{ fontSize: "28px" }}>Mentore</h1>
         </div>
         <div style={{ paddingRight: "10px" }}>
-          <button onClick={()=>setDisplaySignUp(true)} className="sign-in-button">Sign Up As Mentor</button>        
+          <button
+            onClick={() => setDisplaySignUp(true)}
+            className="sign-in-button"
+          >
+            Sign Up As Mentor
+          </button>
         </div>
       </nav>
 
       {displaySignUp && <SignUpPage />}
 
-      {!displaySignUp &&
-        <div>
-          {!chatBegin ? (
-        <header className="App-header">
-          <p style={{ fontWeight: "medium" }}>Unlock Potential Together</p>
-          <form
-            style={{ width: "80%", maxWidth: "1000px" }}
-            onSubmit={handleSubmit}
-          >
-            <input
-              type="text"
-              id="textInput"
-              placeholder="Let's find your perfect mentor..."
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-            <button type="submit">Search</button>
-          </form>
-          {/* <p>{output}</p> */}
-        </header>
-      ) : (
+      {!displaySignUp && (
         <>
-          <div className="chat-display">
-            {logs.map((logEntry, index) => (
-              <React.Fragment key={index}>
-                <div
-                  className="user-message"
-                  style={{ letterSpacing: "0.25px", wordSpacing: "1.25px" }}
+          {!chatBegin ? (
+            <header className="App-header">
+              <p style={{ fontWeight: "medium" }}>Unlock Potential Together</p>
+              <form
+                style={{ width: "80%", maxWidth: "1000px" }}
+                onSubmit={handleSubmit}
+              >
+                <input
+                  type="text"
+                  id="textInput"
+                  placeholder="Let's find your perfect mentor..."
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                />
+                <button type="submit">Search</button>
+              </form>
+              {/* <p>{output}</p> */}
+            </header>
+          ) : (
+            <>
+              <div className="chat-display">
+                {logs.map((logEntry, index) => (
+                  <React.Fragment key={index}>
+                    <div
+                      className="user-message"
+                      style={{ letterSpacing: "0.25px", wordSpacing: "1.25px" }}
+                    >
+                      {logEntry.user}
+                    </div>
+                    {logEntry.loading ? (
+                      <p className="bot-message">
+                        <IconDots className="animate-pulse" />
+                      </p>
+                    ) : (
+                      <div
+                        className="bot-message"
+                        style={{
+                          letterSpacing: "0.25px",
+                          wordSpacing: "1.25px",
+                        }}
+                      >
+                        {logEntry.bot}
+                      </div>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+              <header className="App-bottom">
+                <form
+                  style={{ width: "80%", maxWidth: "1000px" }}
+                  onSubmit={handleSubmit}
                 >
-                  {logEntry.user}
-                </div>
-                {logEntry.loading ? (
-                  <p className="bot-message">
-                    <IconDots className="animate-pulse" />
-                  </p>
-                ) : (
-                  <div
-                    className="bot-message"
-                    style={{ letterSpacing: "0.25px", wordSpacing: "1.25px" }}
-                  >
-                    {logEntry.bot}
-                  </div>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-          <header className="App-bottom">
-            <form
-              style={{ width: "80%", maxWidth: "1000px" }}
-              onSubmit={handleSubmit}
-            >
-              <input
-                type="text"
-                id="textInput"
-                placeholder="Ask a follow-up..."
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-              />
-              <button type="submit">Search</button>
-            </form>
+                  <input
+                    type="text"
+                    id="textInput"
+                    placeholder="Ask a follow-up..."
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                  />
+                  <button type="submit">Search</button>
+                </form>
 
-            {/* <p>{output}</p> */}
-          </header>
+                {/* <p>{output}</p> */}
+              </header>
+            </>
+          )}
         </>
       )}
-        </div>
-      }
-      
     </div>
   );
 }
