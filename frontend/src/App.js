@@ -1,3 +1,4 @@
+import SignUpPage from './SignUpPage';
 import React, { useState, useEffect, Fragment } from "react";
 import "./styles/App.css";
 
@@ -8,6 +9,7 @@ function App() {
   const [output, setOutput] = useState("");
   const [chatBegin, setChatBegin] = useState(false);
   const [logs, setLogs] = useState([]);
+  const [displaySignUp, setDisplaySignUp] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = chatBegin ? "auto" : "hidden";
@@ -91,11 +93,15 @@ function App() {
           <h1 style={{ fontSize: "28px" }}>Mentore</h1>
         </div>
         <div style={{ paddingRight: "10px" }}>
-          <button className="sign-in-button">Sign In / Sign Up</button>
+          <button onClick={()=>setDisplaySignUp(true)} className="sign-in-button">Sign Up As Mentor</button>        
         </div>
       </nav>
 
-      {!chatBegin ? (
+      {displaySignUp && <SignUpPage />}
+
+      {!displaySignUp &&
+        <div>
+          {!chatBegin ? (
         <header className="App-header">
           <p style={{ fontWeight: "medium" }}>Unlock Potential Together</p>
           <form
@@ -158,6 +164,9 @@ function App() {
           </header>
         </>
       )}
+        </div>
+      }
+      
     </div>
   );
 }
