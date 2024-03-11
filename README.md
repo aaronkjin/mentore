@@ -1,12 +1,15 @@
 # Mentore
 
-An LLM-integrated mentor-matching platform. Designed to connect individuals with the perfect mentor tailored to their unique needs, preferences, and aspirations. Offers personalized mentorship connections that can help propel your personal and professional growth.
+An LLM-integrated mentor-matching platform. Designed to connect you with the perfect mentor tailored to your unique needs, preferences, and aspirations. Offers personalized mentorship connections that can help propel your personal and professional growth.
 
 ## Getting Started
 
 To see the website up and running, go into the frontend directory, and run:
 
 ```bash
+# go into frontend
+cd frontend
+
 # run
 npm start
 ```
@@ -47,20 +50,31 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 - Cosine similarity for mentor matching logic
 - GPT-4 for generating mentor matches based on user queries
 
-
 ## Sprint 3 Updates
 
 ### Aaron
 
+**This sprint:** During this sprint, we refactored our frontend code to be suitable with React + JS (using create-react-app), rather than with TypeScript (and Next.js). We did this because our group members were more comfortable with reading and writing JavaScript as opposed to TypeScript, allowing more hands to work on the frontend logic if need be. Specifically with the frontend, I implemented chatBegin states such that the initial screen showcases our "landing page" (with the "Unlock potential together" motto), and upon user search of their text query, it shows an updated page of their responses in chat format (similar to an iMessage feel). I finetuned other various frontend tweaks such as adding our own font packages, redirecting users back to the landing page upon pressing "Mentore," creating chat bubbles for the users' text inputs, and more. It's the details that matter for me.
+
+**Next sprint:** Next sprint, I will work on completing the "Sign In / Sign Up" button so that users have a way of going through the auth system. This way, we will have unique user instances so that different users can interact and respond to our conversational agent. Other than building out the authentication, I will continue to make iterative frontend changes so that we have our finalized MVP for our final sprint.
+
 ### Daniel
+
+**This sprint:** This sprint, I built the scraper. Initially, I built a scraper LinkedIn, but it didn't work -- LinkedIn has privacy and scraping regulations that blocked our scaper. Then, I tried to make a dynamic scraper with a headless driver to simulate a human but it also didn't work as it was too slow and inefficient. I then tried to gain access to LinkedIn's API but I soon realized it would take up to a month to authorize. As a result, I pivoted and attempted to build a scraper for [Stanford Alumni Mentoring](https://mentoring.stanford.edu/). However, for some weird reason, there was no page that displayed every alumni mentor (bad product manager). Finally, I decided to simply scrape the Faculty, Research, and Teaching Staff pages on the [Stanford Profiles Directory](https://profiles.stanford.edu/). This attempt worked with a dynamic scraper that scrolled through every department and page using a headless driver. Specifically, I parsed the names, professional titles, and bios of 7,5000+ Stanford faculty mentors into a .csv file that we then passed into the OpenAI embeddings API to precompute semantic embeddings.
+
+**Next sprint:** Next sprint, I aim to build more scrapers for other large databases and automate the scraping (in case some directories update). I also want to create a custom database that stores all the mentor data rather than relying on a .csv file and build a RAG system to reduce the latency of our chatbot (currently ~15-30 secs). Finally, I want to contribute to further frontend enhancements.
 
 ### Sarvesh
 
+**This sprint:** This sprint, I rebuilt the backend to add the full feature set: semantic search with the embeddings similarity, chat memory, multiple users can chat, mentor context for continued question answering etc. I built in the chat functionality - where you can chat with GPT 4 about your options in mentors. You have memory for the chat -where when you talk to the bot it remembers the previous messages within a chat to come up with future responses. It has the ability to handle concurrent users - where you can have user 1 and user 2 and user 3 concurrently using the application, but it isn't quite fast and is not yet ready for scaling. It'll be running when I can create a load balancer and scheduler essentially (maybe round robin) - or a way to batch execute the prompts that its trying to execute - at the moment it is sequential. This is fine as the front end isn't fully ready yet but we can fix that once that uath page on the front end is ready - once we can actually handle multiple users on the frontend. But technically we can handle multiple users - we have the statefuleness built into the application.
+
+**Next sprint:** I need to build a load balancer/scheduler and a way to batch execute GPT 4 prompts. I also need to build out RAG and a web agent powered by GPT4 for better results given more diverse data on the mentors. I want to help build a dynamic scraper and a backend database with a redis cache layer to store the data for quick access etc.
+
 ### Andrew
 
-**This sprint:** This sprint I worked with Aaron to refactor and rebuild the entire frontend to use React because it was a lot more managable. I helped Dan with the scraper and we worked on pulling all the bios of the stanford professors. Aaron and I worked primarily on just finishing up the frontend to work and build chat functionality with the backend api that Sarvesh was building.
+**This sprint:** This sprint, I worked with Aaron to refactor and rebuild the entire frontend to use React and JavaScript (instead of our previous Next.js interface) because it was a lot more managable. I helped Dan with the scraper and we worked on pulling all the bios of the Stanford professors. Aaron and I worked primarily on just finishing up the frontend to work and build chat functionality with the backend API that Sarvesh was building.
 
-**Next sprint:** Next sprint we hope to deploy the finalized code to a server and improve our imbeddings. We will also further improve our UI design and start adding more mentors and add a mentor sign up feature. Our goal is to expand our platform to as many mentors as possible to give users the biggest pool of people to choose from and thus find the best match.
+**Next sprint:** Next sprint, we hope to deploy the finalized code to a server and improve our embeddings. We will also further improve our UI design and start adding more mentors and add a mentor sign up feature. Our goal is to expand our platform to as many mentors as possible to give users the biggest pool of people to choose from and thus find the best match.
 
 ## Sprint 2 Updates
 
@@ -92,7 +106,8 @@ Developed the frontend application from scratch, focusing on key UI features to 
 
 **Next sprint:**
 Fixing the Backend: This involves a thorough review and enhancement of our current backend infrastructure to support the increased complexity and functionality of our mentor-matching platform. Ensuring stability, scalability, and security will be key aspects of this work.
-Improving Cosine Similarity Functionality: Currently, our platform is not matching kids to mentors as accurately as we intend. Sarvesh will be dedicating time to refine the algorithm, specifically focusing on the cosine similarity calculations that underpin our matching logic. This will involve:
+
+Improving Cosine Similarity Functionality: Currently, our platform is not matching kids to mentors as accurately as we intend. I will be dedicating time to refine the algorithm, specifically focusing on the cosine similarity calculations that underpin our matching logic.
 
 ### Andrew
 

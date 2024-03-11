@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SignUpPage from './SignUpPage';
+import React, { useState, useEffect, Fragment } from "react";
 import "./styles/App.css";
+
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -14,18 +16,30 @@ function App() {
     document.body.style.overflow = chatBegin ? "auto" : "hidden";
   }, [chatBegin]);
 
+  const resetChat = () => {
+    setChatBegin(false);
+    setInputValue("");
+    setLogs([]);
+    setOutput("");
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const endpoint = "http://54.218.124.218:5000/query";
-    const temp = inputValue;
-    const payload = { message: temp };
 
-    setLogs([...logs, [temp]]);
+    // User message
+    const newLogEntry = { user: inputValue, bot: "", loading: true };
+    setLogs((logs) => [...logs, newLogEntry]);
+
     setInputValue("");
     setChatBegin(true);
 
+    const payload = {
+      user_id: "1",
+      message: newLogEntry.user,
+    };
+
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch("http://52.10.255.219:5000/query", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,28 +53,49 @@ function App() {
 
       const data = await response.json();
       console.log("Response data:", data);
-      const addedBotLogs = [...logs];
-      addedBotLogs[addedBotLogs.length - 1] = [
-        ...addedBotLogs[addedBotLogs.length - 1],
-        data,
-      ];
-      setLogs(addedBotLogs);
+
+      // Bot message
+      setLogs((currentLogs) =>
+        currentLogs.map((log, index) => {
+          if (index === currentLogs.length - 1) {
+            const responseMessage =
+              currentLogs.length === 1
+                ? data.initial_message
+                : data.assistant_response;
+            return { ...log, bot: responseMessage, loading: false };
+          }
+          return log;
+        })
+      );
     } catch (error) {
       console.error("Error fetching data:", error);
+      // Update last log entry to remove loading state and keep user message
+      setLogs((currentLogs) =>
+        currentLogs.map((log, index) => {
+          if (index === currentLogs.length - 1) {
+            return { ...log, loading: false };
+          }
+          return log;
+        })
+      );
     }
   };
 
   return (
     <div className="App">
       <nav>
-        <a
-          href="https://github.com/aaronkjin/mentore"
-          target="_blank"
-          rel="noopener noreferrer"
+        <div
+          onClick={resetChat}
+          style={{
+            paddingLeft: "10px",
+            cursor: "pointer",
+          }}
         >
-          <h1>Mentore</h1>
-        </a>
-        <button onClick={()=>setDisplaySignUp(true)} className="sign-in-button">Sign Up As Mentor</button>
+          <h1 style={{ fontSize: "28px" }}>Mentore</h1>
+        </div>
+        <div style={{ paddingRight: "10px" }}>
+          <button onClick={()=>setDisplaySignUp(true)} className="sign-in-button">Sign Up As Mentor</button>        
+        </div>
       </nav>
 
       {displaySignUp && <SignUpPage />}
@@ -69,8 +104,11 @@ function App() {
         <div>
           {!chatBegin ? (
         <header className="App-header">
-          <p>Unlock Potential Together</p>
-          <form onSubmit={handleSubmit}>
+          <p style={{ fontWeight: "medium" }}>Unlock Potential Together</p>
+          <form
+            style={{ width: "80%", maxWidth: "1000px" }}
+            onSubmit={handleSubmit}
+          >
             <input
               type="text"
               id="textInput"
@@ -85,16 +123,34 @@ function App() {
       ) : (
         <>
           <div className="chat-display">
-            {logs.map((userMessage, index) => {
-              return (
-                <div key={index} className="user-message">
-                  {userMessage[0]}
+            {logs.map((logEntry, index) => (
+              <React.Fragment key={index}>
+                <div
+                  className="user-message"
+                  style={{ letterSpacing: "0.25px", wordSpacing: "1.25px" }}
+                >
+                  {logEntry.user}
                 </div>
-              );
-            })}
+                {logEntry.loading ? (
+                  <SkeletonTheme color="#202020" highlightColor="#444">
+                    <Skeleton count={3} />
+                  </SkeletonTheme>
+                ) : (
+                  <div
+                    className="bot-message"
+                    style={{ letterSpacing: "0.25px", wordSpacing: "1.25px" }}
+                  >
+                    {logEntry.bot}
+                  </div>
+                )}
+              </React.Fragment>
+            ))}
           </div>
           <header className="App-bottom">
-            <form onSubmit={handleSubmit}>
+            <form
+              style={{ width: "80%", maxWidth: "1000px" }}
+              onSubmit={handleSubmit}
+            >
               <input
                 type="text"
                 id="textInput"

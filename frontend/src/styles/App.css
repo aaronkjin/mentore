@@ -82,20 +82,20 @@ body,
 html {
   height: 100%;
   margin: 0;
+  overflow: hidden;
   font-family: "NeueHaasRegular";
   background-color: #191919;
 }
 
 .App {
   text-align: center;
-  height: 100vh;
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding-top: 60px; /* Height of NavBar */
-  padding-bottom: 60px; /* Height of SearchForm */
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .App-header {
@@ -106,6 +106,7 @@ html {
   height: 100vh;
   padding: 0;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .App-bottom {
@@ -113,58 +114,37 @@ html {
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  height: 100vh;
-  padding: 8vh;
+  padding-bottom: 2vh;
+  padding-top: 0.5vh;
   box-sizing: border-box;
   position: fixed;
-  z-index: 1000;
-}
-
-.App-header > h1 {
-  font-size: 48px;
-  font-weight: 300;
-  margin: 0;
-  margin-bottom: 20px;
+  z-index: 1001;
+  width: 100%;
+  bottom: 0;
+  background-color: #191919;
+  width: 100%;
 }
 
 .App-header > p {
   font-size: 24px;
   font-weight: 300;
   margin: 0;
-  margin-bottom: 50px;
-}
-
-/* Additional styles to remove hyperlink formatting on h1 */
-a > h1 {
-  color: white;
-  text-decoration: none !important;
-  cursor: default;
-}
-
-a:visited > h1 {
-  color: white;
-  text-decoration: none !important;
-}
-
-a:hover > h1,
-a:focus > h1 {
-  color: white;
-  text-decoration: none !important;
+  margin-bottom: 35px;
 }
 
 nav {
-  width: 98%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  top: 0;
-  padding: 10;
-  height: 60px;
   position: fixed;
-  left: 2;
-  right: 2;
-  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 1001;
+  padding-top: 4px;
+  background-color: #191919;
+  width: 100%;
 }
 
 nav > .sign-in-button {
@@ -176,12 +156,27 @@ nav > .sign-in-button {
   cursor: pointer;
 }
 
+.sign-in-button {
+  padding: 10px 20px;
+  background: #555;
+  border: 1px solid #555;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sign-in-button:hover {
+  background-color: #777;
+  color: white;
+}
+
 form {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  width: 200%;
+  width: 100%;
   max-width: none;
 }
 
@@ -197,15 +192,17 @@ input[type="text"] {
 button {
   padding: 15px 20px;
   font-size: 16px;
-  background-color: #333;
+  background-color: #555;
   color: white;
+  border: 1px solid #555;
   border: none;
   border-radius: 20px;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 button:hover {
-  background-color: #555;
+  background-color: #777;
 }
 
 .chat-display {
@@ -227,4 +224,41 @@ button:hover {
   margin: 5px 0;
   max-width: 70%;
   word-wrap: break-word;
+}
+
+.chat-display {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  margin: 0;
+  padding: 20px 20px 20px 20px;
+  overflow-y: auto;
+  position: relative;
+  z-index: 0;
+  top: 0px;
+  bottom: 0px;
+}
+
+.user-message {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin: 5px 20px;
+  max-width: calc(100% - 300px);
+  word-wrap: break-word;
+  align-self: flex-end;
+  text-align: left;
+}
+
+.bot-message {
+  background-color: #444;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin: 5px 20px;
+  max-width: calc(100% - 300px);
+  word-wrap: break-word;
+  align-self: flex-start;
+  text-align: left;
 }
