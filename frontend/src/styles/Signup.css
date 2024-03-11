@@ -1,0 +1,48 @@
+/* Sign Up Page */
+.Signup-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.font-signup-header {
+  font-family: "NeueHaasRegular" !important;
+  font-size: 24px;
+  font-style: normal;
+}
+
+.mentor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 50%;
+}
+
+.form-label {
+  width: 10%;
+  margin-right: 20px;
+}
+
+.mentor-input,
+.mentor-bio {
+  flex-grow: 1;
+  margin: 0;
+}
+
+.mentor-button {
+  align-self: center;
+  width: 20%;
+}

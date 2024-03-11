@@ -1,3 +1,4 @@
+/* Fonts */
 @font-face {
   font-family: "MonoSpec";
   src: url("../../public/fonts/monospec.otf") format("opentype");
@@ -78,6 +79,7 @@ body {
   line-height: 120%; /* 19.2px */
 }
 
+/* Main Page */
 body,
 html {
   height: 100%;
@@ -205,6 +207,7 @@ button:hover {
   background-color: #777;
 }
 
+/* Chat Page */
 .chat-display {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
+
 import { database } from "../firebase.js";
 import { ref, set } from "firebase/database";
+
+import "../styles/Signup.css";
+
 export default function SignUpPage() {
   const [bio, setBio] = useState("");
   const [name, setName] = useState("");
@@ -25,35 +29,55 @@ export default function SignUpPage() {
         alert("Failed to send message: " + error.message);
       });
   }
+
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <>
+      <header className="Signup-header">
+        <p className="font-signup-header">Empower the Future, Guide Today</p>
+      </header>
+      <form onSubmit={handleSubmit} className="mentor-container">
+        {/* Name */}
+        <div className="form-group">
+          <label className="form-label">Name: </label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Enter name..."
+            placeholder="Gavin Belson"
+            className="mentor-input"
           />
         </div>
-        <div>
+
+        {/* Title */}
+        <div className="form-group">
+          <label className="form-label">Title: </label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter title..."
+            placeholder="CEO of Hooli"
+            className="mentor-input"
           />
         </div>
-        <div>
+
+        {/* Bio */}
+        <div className="form-group">
+          <label className="form-label">Bio: </label>
           <input
             type="text"
             value={bio}
             onChange={(e) => setBio(e.target.value)}
-            placeholder="Enter bio..."
+            placeholder="
+            As Hooli's visionary CEO, I tackle Silicon Valley's challenges..."
+            className="mentor-bio"
           />
         </div>
-        <button type="submit">Send Profile</button>
+
+        {/* Button */}
+        <button type="submit" className="mentor-button">
+          Send Profile
+        </button>
       </form>
-    </div>
+    </>
   );
 }

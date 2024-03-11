@@ -1,7 +1,8 @@
-// pages/MainPage.js
 import React, { useState } from "react";
-import { IconDots } from "@tabler/icons-react";
+
 import "../styles/App.css";
+
+import { IconDots } from "@tabler/icons-react";
 
 function MainPage({ onResetChat }) {
   const [inputValue, setInputValue] = useState("");
@@ -84,7 +85,6 @@ function MainPage({ onResetChat }) {
             />
             <button type="submit">Search</button>
           </form>
-          {/* <p>{output}</p> */}
         </header>
       ) : (
         <>
@@ -129,8 +129,6 @@ function MainPage({ onResetChat }) {
               />
               <button type="submit">Search</button>
             </form>
-
-            {/* <p>{output}</p> */}
           </header>
         </>
       )}
