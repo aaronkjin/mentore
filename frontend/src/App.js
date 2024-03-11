@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import SignUpPage from './SignUpPage';
 import "./styles/App.css";
 
 function App() {
@@ -6,6 +8,7 @@ function App() {
   const [output, setOutput] = useState("");
   const [chatBegin, setChatBegin] = useState(false);
   const [logs, setLogs] = useState([]);
+  const [displaySignUp, setDisplaySignUp] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = chatBegin ? "auto" : "hidden";
@@ -57,10 +60,14 @@ function App() {
         >
           <h1>Mentore</h1>
         </a>
-        <button className="sign-in-button">Sign In / Sign Up</button>
+        <button onClick={()=>setDisplaySignUp(true)} className="sign-in-button">Sign Up As Mentor</button>
       </nav>
 
-      {!chatBegin ? (
+      {displaySignUp && <SignUpPage />}
+
+      {!displaySignUp &&
+        <div>
+          {!chatBegin ? (
         <header className="App-header">
           <p>Unlock Potential Together</p>
           <form onSubmit={handleSubmit}>
@@ -102,6 +109,9 @@ function App() {
           </header>
         </>
       )}
+        </div>
+      }
+      
     </div>
   );
 }
