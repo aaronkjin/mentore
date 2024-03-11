@@ -43,6 +43,7 @@ export default function SignUpPage() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            id="inputID"
             placeholder="Gavin Belson"
             className="mentor-input"
           />
@@ -55,6 +56,7 @@ export default function SignUpPage() {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            id="inputID"
             placeholder="CEO of Hooli"
             className="mentor-input"
           />
@@ -67,6 +69,7 @@ export default function SignUpPage() {
             type="text"
             value={bio}
             onChange={(e) => setBio(e.target.value)}
+            id="inputID"
             placeholder="
             As Hooli's visionary CEO, I tackle Silicon Valley's challenges..."
             className="mentor-bio"
