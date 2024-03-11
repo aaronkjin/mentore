@@ -1,8 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import "./styles/App.css";
 
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import { IconDots } from "@tabler/icons-react";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -126,9 +125,9 @@ function App() {
                   {logEntry.user}
                 </div>
                 {logEntry.loading ? (
-                  <SkeletonTheme color="#202020" highlightColor="#444">
-                    <Skeleton count={3} />
-                  </SkeletonTheme>
+                  <p className="bot-message">
+                    <IconDots className="animate-pulse" />
+                  </p>
                 ) : (
                   <div
                     className="bot-message"
