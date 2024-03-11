@@ -33,7 +33,7 @@ function App() {
             </button>
           ) : (
             <button onClick={toggleSignUp} className="sign-in-button">
-              Become a Mentor!
+              Become a Mentor
             </button>
           )}
         </div>
