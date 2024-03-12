@@ -13,6 +13,13 @@ export default function SignUpPage() {
   // Adds new mentor to our database of mentors
   function handleSubmit(e) {
     e.preventDefault();
+
+    // Edge case: Invalid input values
+    if (!name.trim() || !title.trim() || !bio.trim()) {
+      alert("Please fill in valid input values.");
+      return;
+    }
+
     const msg = ref(database, "bios/" + Date.now());
     const obj = {
       name: name,

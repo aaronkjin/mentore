@@ -14,6 +14,7 @@ function MainPage({ onResetChat }) {
 
     // Edge case: Empty input value
     if (!inputValue.trim()) {
+      alert("Please fill in a valid input value.");
       return;
     }
 
