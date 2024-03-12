@@ -16,6 +16,20 @@ npm start
 
 Open [http://localhost:3000](http://localhost:3000) with your browser.
 
+## Walkthrough
+
+### Home Page
+
+Our Home Page provides a simple yet clean interface for users to begin searching for mentors that matches their desired descriptions. It draws inspiration from other LLM applications like Perplexity and Phind. At the top, users will have access to the navigation bar, where people can sign up to be a mentor (see more below) as well as click on "Mentore" itself to take them back to the home page wherever they are in their user flow.
+
+### Mentor Sign-Up Page
+
+Those who desire to mentor others may sign up to be a mentor through the Mentor Sign-Up Page. To do so, simply click the "Become a Mentor" button. They will then input necessary details (name, title, and biography), which will be added to our existing database of mentors (which houses both scraped and manually inputed data). As a little Easter egg, the placeholder values for these inputs show Gavin Belson, CEO of Hooli, from popular T.V. show, "Silicon Valley."
+
+### Chat Page
+
+To engage in chat further, users are directed to the Chat Page. The interface mimics an aesthetic, minimalistic conversational, text-like display. Our backend processes these user queries and uses OpenAI embeddings as well as GPT-4 itself to generate insightful outputs gathered from our database of mentors. Users can continue to converse with our chatbot to hone in and find the exact mentor that they are looking for. Additional touch-ups include animations such as skeleton loaders/text bubbles in between user query inputs and chatbot outputs, dynamic sizing, and more.
+
 ## Design
 
 ### Backend
