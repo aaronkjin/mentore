@@ -12,6 +12,11 @@ function MainPage({ onResetChat }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Edge case: Empty input value
+    if (!inputValue.trim()) {
+      return;
+    }
+
     // User message
     const newLogEntry = { user: inputValue, bot: "", loading: true };
     setLogs((logs) => [...logs, newLogEntry]);
