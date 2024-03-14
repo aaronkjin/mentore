@@ -1,6 +1,12 @@
 import React from "react";
 
-function Nav({ displaySignUp, onResetChat, onToggleSignUp, setIdentity, user}) {
+function Nav({
+  displaySignUp,
+  onResetChat,
+  onToggleSignUp,
+  setIdentity,
+  user,
+}) {
   return (
     <nav>
       <div
@@ -17,9 +23,14 @@ function Nav({ displaySignUp, onResetChat, onToggleSignUp, setIdentity, user}) {
         ) : (
           <>
             {user && <button>{user.email}</button>}
-            <button onClick={() => setIdentity(true)}>Sign up / Sign in</button>
-            <button onClick={onToggleSignUp} className="sign-in-button">
+            <span onClick={onToggleSignUp} className="link-like-text">
               Become a Mentor
+            </span>
+            <button
+              onClick={() => setIdentity(true)}
+              className="sign-in-button"
+            >
+              Sign Up / Sign In
             </button>
           </>
         )}
