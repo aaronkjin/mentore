@@ -7,7 +7,7 @@ import { IconDots } from "@tabler/icons-react";
 import CareerModal from "../components/CareerModal";
 import LocationModal from "../components/LocationModal";
 
-function MainPage({ onResetChat }) {
+function MainPage({ onResetChat, user }) {
   const [inputValue, setInputValue] = useState("");
   const [logs, setLogs] = useState([]);
   const [chatBegin, setChatBegin] = useState(false);
@@ -48,8 +48,9 @@ function MainPage({ onResetChat }) {
     setChatBegin(true);
 
     const payload = {
-      user_id: "1",
+      user_id: user.metadata.createdAt,
       message: newLogEntry.user,
+
     };
 
     try {
