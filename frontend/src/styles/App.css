@@ -322,3 +322,7 @@ button:hover {
   cursor: pointer;
   font-family: "NeueHaasRegular";
 }
+
+.user-initial:hover {
+  background-color: white;
+}

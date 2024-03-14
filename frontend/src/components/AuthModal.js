@@ -26,12 +26,8 @@ const AuthModal = ({ isOpen, onClose }) => {
       .then((userCredential) => {
         // Handle login success
         console.log(userCredential.user);
-        if (userCredential.user.emailVerified) {
-          setMessage(`Welcome back, ${userCredential.user.email}.`);
-          onClose();
-        } else {
-          throw new Error("Your email is not yet verified.");
-        }
+        setMessage(`Welcome back, ${userCredential.user.email}.`);
+        onClose();
       })
       .catch((error) => {
         // Handle errors

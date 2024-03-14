@@ -1,4 +1,6 @@
 import React from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase.js";
 
 function Nav({
   displaySignUp,
@@ -10,6 +12,14 @@ function Nav({
   const getEmailInitial = (email) => {
     const initial = email.charAt(0).toUpperCase();
     return initial.match(/[A-Z]/) ? initial : "#";
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
   };
 
   return (
@@ -28,7 +38,9 @@ function Nav({
         ) : (
           <>
             {user ? (
-              <div className="user-initial">{getEmailInitial(user.email)}</div>
+              <div className="user-initial" onClick={handleLogout}>
+                {getEmailInitial(user.email)}
+              </div>
             ) : (
               <>
                 <span onClick={onToggleSignUp} className="link-like-text">
