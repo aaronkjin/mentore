@@ -5,7 +5,7 @@ from selenium import webdriver
 
 data = [["Name", "Title", "Bio"]]
 
-def scrape_link_bios(link):
+def scrape_link_bios(link, department):
     # initialize driver and nagivate to link
     driver = webdriver.Chrome()
     driver.get(link)
@@ -27,11 +27,23 @@ def scrape_link_bios(link):
         photo_element = person.find('div', class_='image-holder').find('img')
         image_url = photo_element['src'] if photo_element and photo_element.get('src') else 'None'
 
+        # create a list to store the menntor's profile
         cur = []
+
+        # mentor name
         cur.append((str)(name_element.get_text(strip=True)))
+
+        # mentor department
+        department = department.replace('-', ' ')
+        cur.append(department)
+        
+        # mentor title
         cur.append((str)(title_element.get_text(strip=True)))
+
+        # mentor bio
         cur.append((str)(bio_element.get_text(strip=True)))
 
+        # mentor contact
         if contact_info_element:
             email_element = contact_info_element.find('a', href=lambda href: href and href.startswith('mailto:'))
             if email_element:
@@ -40,7 +52,10 @@ def scrape_link_bios(link):
                 cur.append("email is unavailable")
         else:
             cur.append("email is unavailable")
+
+        # mentor contact
         cur.append(image_url)
+
         data.append(cur)
 
     # find and check next page button
@@ -63,7 +78,7 @@ if __name__ == "__main__":
     for department in departments:
         link = f"https://profiles.stanford.edu/browse/{department}?p=1&affiliations=capFaculty&ps=100"
         while link is not None:
-            link = scrape_link_bios(link)
+            link = scrape_link_bios(link, department)
     
     filename = 'backend/new_mentore_data.csv'
 
