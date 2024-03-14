@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { IconDots } from "@tabler/icons-react";
 
+import AuthModal from "../components/AuthModal";
 import ResearchModal from "../components/ResearchModal";
 import IndustryModal from "../components/IndustryModal";
 import CareerModal from "../components/CareerModal";
@@ -17,6 +18,7 @@ function MainPage({ onResetChat, user }) {
   const [showResearch, setShowResearch] = useState(false);
   const [showCareer, setShowCareer] = useState(false);
   const [showLocation, setShowLocation] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const textAreaRef = useRef(null);
 
   useEffect(() => {
@@ -33,9 +35,9 @@ function MainPage({ onResetChat, user }) {
       event.preventDefault();
       handleDisconnect();
     };
-  
+
     window.addEventListener("beforeunload", handleBeforeUnload);
-  
+
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
@@ -44,13 +46,12 @@ function MainPage({ onResetChat, user }) {
   useEffect(() => {
     const timeout = setTimeout(() => {
       handleDisconnect();
-    }, 5000); // Adjust the timeout duration as needed (in milliseconds)
-  
+    }, 5000); // Adjust timeout duration later
+
     return () => {
       clearTimeout(timeout);
     };
   }, []);
-  
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -60,21 +61,23 @@ function MainPage({ onResetChat, user }) {
   };
 
   const handleDisconnect = async () => {
-    const payload = {
-      user_id: "1",
-    };
-    console.log("Disconnecting...");
+    if (user) {
+      const payload = {
+        user_id: user.metadata.createdAt,
+      };
+      console.log("Disconnecting...");
 
-    try {
-      await fetch("http://34.222.45.193:5000/disconnect", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-    } catch (error) {
-      console.error("Error calling /disconnect:", error);
+      try {
+        await fetch("http://34.222.45.193:5000/disconnect", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+      } catch (error) {
+        console.error("Error calling /disconnect:", error);
+      }
     }
   };
 
@@ -82,6 +85,12 @@ function MainPage({ onResetChat, user }) {
     // Edge case: Empty input value
     if (!inputValue.trim()) {
       alert("Please fill in a valid input value.");
+      return;
+    }
+
+    // Edge case: User is not logged in, show the AuthModal
+    if (!user) {
+      setShowAuthModal(true);
       return;
     }
 
@@ -145,6 +154,10 @@ function MainPage({ onResetChat, user }) {
       {/* Home Page */}
       {!chatBegin ? (
         <>
+          <AuthModal
+            isOpen={showAuthModal}
+            onClose={() => setShowAuthModal(false)}
+          />
           <header className="App-header">
             <p style={{ fontWeight: "medium" }}>Unlock Potential Together</p>
             <form
