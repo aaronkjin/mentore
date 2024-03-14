@@ -26,10 +26,53 @@ function MainPage({ onResetChat, user }) {
     adjustHeight();
   }, [inputValue]);
 
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      handleDisconnect();
+    };
+  
+    window.addEventListener("beforeunload", handleBeforeUnload);
+  
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      handleDisconnect();
+    }, 5000); // Adjust the timeout duration as needed (in milliseconds)
+  
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
+  
+
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSubmit();
+    }
+  };
+
+  const handleDisconnect = async () => {
+    const payload = {
+      user_id: "1",
+    };
+    console.log("Disconnecting...");
+
+    try {
+      await fetch("http://34.222.45.193:5000/disconnect", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch (error) {
+      console.error("Error calling /disconnect:", error);
     }
   };
 
