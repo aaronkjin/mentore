@@ -7,7 +7,7 @@ import {
 
 import { auth } from "../firebase.js";
 import Modal from "./Modal";
-import logo from "../images/logo.png";
+import logo from "../images/logo-white.png";
 
 import "../styles/Modal.css";
 
@@ -15,6 +15,9 @@ const AuthModal = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [isLogin, setIsLogin] = useState(false);
+
+  const toggleIsLogin = () => setIsLogin(!isLogin);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -22,7 +25,7 @@ const AuthModal = ({ isOpen, onClose }) => {
       .then((userCredential) => {
         // Handle login success
         console.log(userCredential.user);
-        setMessage("Yay! You're logged in!");
+        setMessage(`Welcome back, ${userCredential.user.email}.`);
         onClose();
       })
       .catch((error) => {
@@ -40,7 +43,7 @@ const AuthModal = ({ isOpen, onClose }) => {
         email,
         password
       );
-      setMessage("Yay! You signed up!");
+      setMessage(`Welcome, ${userCredential.user.email}.`);
       onClose();
     } catch (error) {
       console.error("Error signing up: ", error.message);
@@ -52,9 +55,14 @@ const AuthModal = ({ isOpen, onClose }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <img src={logo} width={200} height={200} />
       <header className="Modal-header">
-        <p className="font-modal-header">Welcome</p>
+        <p className="font-modal-header">
+          {isLogin ? "Welcome Back" : "Welcome"}
+        </p>
       </header>
-      <form onSubmit={handleLogin} className="modal-form">
+      <form
+        onSubmit={isLogin ? handleLogin : handleSignUp}
+        className="modal-form"
+      >
         <input
           type="text"
           value={email}
@@ -67,12 +75,15 @@ const AuthModal = ({ isOpen, onClose }) => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button type="button" onClick={handleSignUp}>
-          Sign Up
-        </button>
+        <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
         <div>{message}</div>
       </form>
-      <div style={{ paddingTop: "36px" }}>Already have an account? Login</div>
+      <div style={{ paddingTop: "36px" }}>
+        {isLogin ? "Don't have an account?" : "Already have an account?"}
+        <span onClick={toggleIsLogin} className="login-prompt">
+          {isLogin ? "Sign Up" : "Login"}
+        </span>
+      </div>
     </Modal>
   );
 };

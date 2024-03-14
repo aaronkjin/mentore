@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import { auth } from "./firebase.js";
+
 import "./styles/App.css";
 
 import Nav from "./components/Nav";
@@ -11,6 +14,14 @@ function App() {
   const [key, setKey] = useState(0);
   const [identity, setIdentity] = useState(false);
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const resetChat = () => {
     setKey((prevKey) => prevKey + 1);
@@ -30,9 +41,7 @@ function App() {
         setIdentity={setIdentity}
         user={user}
       />
-
       <AuthModal isOpen={identity} onClose={() => setIdentity(false)} />
-
       {displaySignUp ? (
         <SignUpPage />
       ) : (

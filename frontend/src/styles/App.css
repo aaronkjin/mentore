@@ -307,3 +307,18 @@ button:hover {
 .animate-pulse {
   animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+.user-initial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #cbcbcb;
+  color: #333;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: "NeueHaasRegular";
+}

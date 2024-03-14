@@ -7,6 +7,11 @@ function Nav({
   setIdentity,
   user,
 }) {
+  const getEmailInitial = (email) => {
+    const initial = email.charAt(0).toUpperCase();
+    return initial.match(/[A-Z]/) ? initial : "#";
+  };
+
   return (
     <nav>
       <div
@@ -22,16 +27,21 @@ function Nav({
           </button>
         ) : (
           <>
-            {user && <button>{user.email}</button>}
-            <span onClick={onToggleSignUp} className="link-like-text">
-              Become a Mentor
-            </span>
-            <button
-              onClick={() => setIdentity(true)}
-              className="sign-in-button"
-            >
-              Sign Up / Sign In
-            </button>
+            {user ? (
+              <div className="user-initial">{getEmailInitial(user.email)}</div>
+            ) : (
+              <>
+                <span onClick={onToggleSignUp} className="link-like-text">
+                  Become a Mentor
+                </span>
+                <button
+                  onClick={() => setIdentity(true)}
+                  className="sign-in-button"
+                >
+                  Sign Up / Sign In
+                </button>
+              </>
+            )}
           </>
         )}
       </div>
