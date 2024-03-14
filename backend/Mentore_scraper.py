@@ -24,6 +24,8 @@ def scrape_link_bios(link):
         title_element = person.find('h5')
         bio_element = person.find('span', class_='line-clamp')
         contact_info_element = person.find('div', class_='detail detail-section')
+        photo_element = person.find('div', class_='image-holder').find('img')
+        image_url = photo_element['src'] if photo_element and photo_element.get('src') else 'None'
 
         cur = []
         cur.append((str)(name_element.get_text(strip=True)))
@@ -38,6 +40,7 @@ def scrape_link_bios(link):
                 cur.append("email is unavailable")
         else:
             cur.append("email is unavailable")
+        cur.append(image_url)
         data.append(cur)
 
     # find and check next page button
