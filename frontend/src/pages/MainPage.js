@@ -46,7 +46,7 @@ function MainPage({ onResetChat, user }) {
   useEffect(() => {
     const timeout = setTimeout(() => {
       handleDisconnect();
-    }, 5000); // Adjust timeout duration later
+    }, 180000); // Adjust timeout duration later (3 mins)
 
     return () => {
       clearTimeout(timeout);
@@ -68,7 +68,7 @@ function MainPage({ onResetChat, user }) {
       console.log("Disconnecting...");
 
       try {
-        await fetch("http://34.222.45.193:5000/disconnect", {
+        await fetch("http://54.188.116.14:5000/disconnect", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -107,7 +107,7 @@ function MainPage({ onResetChat, user }) {
     };
 
     try {
-      const response = await fetch("http://34.222.45.193:5000/query", {
+      const response = await fetch("http://54.188.116.14:5000/query", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
