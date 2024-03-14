@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
 } from "firebase/auth";
 
 import { auth } from "../firebase.js";
@@ -25,8 +26,12 @@ const AuthModal = ({ isOpen, onClose }) => {
       .then((userCredential) => {
         // Handle login success
         console.log(userCredential.user);
-        setMessage(`Welcome back, ${userCredential.user.email}.`);
-        onClose();
+        if (userCredential.user.emailVerified) {
+          setMessage(`Welcome back, ${userCredential.user.email}.`);
+          onClose();
+        } else {
+          throw new Error("Your email is not yet verified.");
+        }
       })
       .catch((error) => {
         // Handle errors
@@ -43,7 +48,12 @@ const AuthModal = ({ isOpen, onClose }) => {
         email,
         password
       );
-      setMessage(`Welcome, ${userCredential.user.email}.`);
+      sendEmailVerification(userCredential.user).then(() => {
+        setMessage(
+          `Welcome, ${userCredential.user.email}. Check your email to verify.`
+        );
+      });
+
       onClose();
     } catch (error) {
       console.error("Error signing up: ", error.message);
