@@ -6,16 +6,17 @@ import { ref, set } from "firebase/database";
 import "../styles/Signup.css";
 
 export default function SignUpPage() {
-  const [bio, setBio] = useState("");
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
+  const [email, setEmail] = useState("");
+  const [bio, setBio] = useState("");
 
   // Adds new mentor to our database of mentors
   function handleSubmit(e) {
     e.preventDefault();
 
     // Edge case: Invalid input values
-    if (!name.trim() || !title.trim() || !bio.trim()) {
+    if (!name.trim() || !title.trim() || !email.trim() || !bio.trim()) {
       alert("Please fill in valid input values.");
       return;
     }
@@ -24,12 +25,14 @@ export default function SignUpPage() {
     const obj = {
       name: name,
       title: title,
+      email: email,
       bio: bio,
     };
     set(msg, obj)
       .then(() => {
         setName("");
         setTitle("");
+        setEmail("");
         setBio("");
         alert("Profile sent successfully!");
       })
@@ -71,6 +74,20 @@ export default function SignUpPage() {
             onChange={(e) => setTitle(e.target.value)}
             id="inputID"
             placeholder="CEO of Hooli"
+            className="mentor-input"
+            style={{ outlineColor: "#999" }}
+          />
+        </div>
+
+        {/* Email */}
+        <div className="form-group">
+          <label className="form-label">Email:</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            id="inputID"
+            placeholder="gavin@hooli.xyz"
             className="mentor-input"
             style={{ outlineColor: "#999" }}
           />
