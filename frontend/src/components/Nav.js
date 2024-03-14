@@ -1,6 +1,6 @@
 import React from "react";
 
-function Nav({ displaySignUp, onResetChat, onToggleSignUp, setSignUpModal, setLoginModal, user}) {
+function Nav({ displaySignUp, onResetChat, onToggleSignUp, setIdentity, user}) {
   return (
     <nav>
       <div
@@ -17,8 +17,7 @@ function Nav({ displaySignUp, onResetChat, onToggleSignUp, setSignUpModal, setLo
         ) : (
           <>
             {user && <button>{user.email}</button>}
-            <button onClick={() => {setLoginModal(false); setSignUpModal(true)}}>Sign up</button>
-            <button onClick={() => {setSignUpModal(false);setLoginModal(true)}}>Login</button>
+            <button onClick={() => setIdentity(true)}>Sign up / Sign in</button>
             <button onClick={onToggleSignUp} className="sign-in-button">
               Become a Mentor
             </button>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./styles/App.css";
 import { auth } from './firebase.js';
+import Modal from './Modal.js';
 
 import Nav from "./components/Nav";
 import SignUpPage from "./pages/SignUpPage";
@@ -10,8 +11,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword} from "fireb
 function App() {
   const [displaySignUp, setDisplaySignUp] = useState(false);
   const [key, setKey] = useState(0);
-  const [signUpModal, setSignUpModal] = useState(false);
-  const [loginModal, setLoginModal] = useState(false);
+  const [identity, setIdentity] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signUpMessage, setSignUpMessage] = useState("");
@@ -67,41 +67,30 @@ function App() {
         displaySignUp={displaySignUp}
         onResetChat={resetChat}
         onToggleSignUp={toggleSignUp}
-        setSignUpModal = {setSignUpModal}
-        setLoginModal={setLoginModal}
+        setIdentity = {setIdentity}
         user={user}
       />
-      {signUpModal && 
-        <form onSubmit={handleSignUp}>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type = "submit">Sign Up</button>
-        </form>
-      }
+      
+      <Modal isOpen={identity} onClose={() => setIdentity(false)}>
+        <>
+          <form onSubmit={handleLogin}>
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="text"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button type = "submit">Login</button>
+          </form>
+        </>
+      </Modal>
 
-      {loginModal && 
-        <form onSubmit={handleLogin}>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type = "submit">Login</button>
-        </form>
-      }
+
+
 
       <div>{signUpMessage}</div>
       <div>{loginMessage}</div>
