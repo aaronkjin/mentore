@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import { database } from "../firebase.js";
+import { db } from "../firebase.js";
 import { ref, set } from "firebase/database";
+import { collection, addDoc } from "firebase/firestore";
+
 
 import "../styles/Signup.css";
 
@@ -24,7 +26,7 @@ export default function SignUpPage() {
   }, [bio]);
 
   // Adds new mentor to our database of mentors
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     // Edge case: Invalid input values
@@ -33,24 +35,15 @@ export default function SignUpPage() {
       return;
     }
 
-    const msg = ref(database, "bios/" + Date.now());
-    const obj = {
-      name: name,
-      title: title,
-      email: email,
-      bio: bio,
-    };
-    set(msg, obj)
-      .then(() => {
-        setName("");
-        setTitle("");
-        setEmail("");
-        setBio("");
-        alert("Profile sent successfully!");
-      })
-      .catch((error) => {
-        alert("Failed to send message: " + error.message);
-      });
+    const collectionRef = collection(db, 'bios');
+    const newItem = {name, title, email, bio}
+
+    const docRef = await addDoc(collectionRef, newItem);
+    
+    setName("")
+    setTitle("")
+    setEmail("")
+    setBio("")
   }
 
   return (
@@ -97,7 +90,7 @@ export default function SignUpPage() {
           <input
             type="text"
             value={email}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             id="inputID"
             placeholder="gavin@hooli.xyz"
             className="mentor-input"
