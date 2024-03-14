@@ -4,14 +4,15 @@ import Modal from "./Modal";
 import logo from "../images/logo.png";
 import "../styles/Modal.css";
 
-const IndustryModal = ({ isOpen, onClose, setInput, input}) => {
+const IndustryModal = ({ isOpen, onClose, setInput, input }) => {
   const [industry, setIndustry] = useState("");
 
   function onSubmit(e) {
     e.preventDefault();
-    let tmp = input + " The industry I want my mentor to be in is " + industry + "."
-    setInput(tmp)
-    onClose()
+    let tmp =
+      input + " The industry I want my mentor to be in is " + industry + ".";
+    setInput(tmp);
+    onClose();
   }
 
   return (
@@ -27,9 +28,7 @@ const IndustryModal = ({ isOpen, onClose, setInput, input}) => {
           onChange={(e) => setIndustry(e.target.value)}
           placeholder="Which industry are you looking for a mentor in..."
         />
-        <button type="submit">
-          Confirm
-        </button>
+        <button type="submit">Confirm</button>
       </form>
     </Modal>
   );

@@ -4,15 +4,16 @@ import Modal from "./Modal";
 import logo from "../images/logo.png";
 import "../styles/Modal.css";
 
-const LocationModal = ({ isOpen, onClose, setInput, input}) => {
+const LocationModal = ({ isOpen, onClose, setInput, input }) => {
   const [location, setLocation] = useState("");
 
   function onSubmit(e) {
     e.preventDefault();
-    let tmp = input + " The place I want my mentor to be in is " + location + "."
-    setInput(tmp)
-    setLocation("")
-    onClose()
+    let tmp =
+      input + " The place I want my mentor to be in is " + location + ".";
+    setInput(tmp);
+    setLocation("");
+    onClose();
   }
 
   return (
@@ -28,9 +29,7 @@ const LocationModal = ({ isOpen, onClose, setInput, input}) => {
           onChange={(e) => setLocation(e.target.value)}
           placeholder="Where do you want your mentor to be located..."
         />
-        <button type="submit">
-          Confirm
-        </button>
+        <button type="submit">Confirm</button>
       </form>
     </Modal>
   );

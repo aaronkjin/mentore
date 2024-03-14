@@ -11,10 +11,10 @@ function MainPage({ onResetChat }) {
   const [inputValue, setInputValue] = useState("");
   const [logs, setLogs] = useState([]);
   const [chatBegin, setChatBegin] = useState(false);
-  const [showIndustry, setShowIndustry] = useState(false)
-  const [showResearch, setShowResearch] = useState(false)
-  const [showCareer, setShowCareer] = useState(false)
-  const [showLocation, setShowLocation] = useState(false)
+  const [showIndustry, setShowIndustry] = useState(false);
+  const [showResearch, setShowResearch] = useState(false);
+  const [showCareer, setShowCareer] = useState(false);
+  const [showLocation, setShowLocation] = useState(false);
   const textAreaRef = useRef(null);
 
   useEffect(() => {
@@ -119,14 +119,108 @@ function MainPage({ onResetChat }) {
             />
             <button type="submit">Search</button>
           </form>
-          <button onClick = {() => setShowIndustry(true)}>help me define my industry</button>
-          <IndustryModal isOpen={showIndustry} onClose={() => setShowIndustry(false)} input = {inputValue} setInput={setInputValue} />
-          <button onClick = {() => setShowResearch(true)}>help me define my research specialty</button>
-          <CareerModal isOpen={showResearch} onClose={() => setShowResearch(false)} input = {inputValue} setInput={setInputValue} />
-          <button onClick = {() => setShowCareer(true)}>help me define my career</button>
-          <CareerModal isOpen={showCareer} onClose={() => setShowCareer(false)} input = {inputValue} setInput={setInputValue} />
-          <button onClick = {() => setShowLocation(true)}>help me define my desired location</button>
-          <LocationModal isOpen={showLocation} onClose={() => setShowLocation(false)} input = {inputValue} setInput={setInputValue} />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "3px",
+              paddingTop: "8px",
+              justifyContent: "flex-start",
+            }}
+          >
+            <p style={{ color: "rgb(195, 195, 195)" }}>
+              Need mentorship? Explore:{" "}
+            </p>
+            <span
+              onClick={() => setShowIndustry(true)}
+              style={{
+                textDecoration: "underline",
+                cursor: "pointer",
+                color: "rgb(135, 135, 135)",
+              }}
+              onMouseEnter={(e) =>
+                (e.target.style.color = "rgb(195, 195, 195)")
+              }
+              onMouseLeave={(e) =>
+                (e.target.style.color = "rgb(135, 135, 135)")
+              }
+            >
+              industry,
+            </span>
+            <IndustryModal
+              isOpen={showIndustry}
+              onClose={() => setShowIndustry(false)}
+              input={inputValue}
+              setInput={setInputValue}
+            />
+            <span
+              onClick={() => setShowResearch(true)}
+              style={{
+                textDecoration: "underline",
+                cursor: "pointer",
+                color: "rgb(135, 135, 135)",
+              }}
+              onMouseEnter={(e) =>
+                (e.target.style.color = "rgb(195, 195, 195)")
+              }
+              onMouseLeave={(e) =>
+                (e.target.style.color = "rgb(135, 135, 135)")
+              }
+            >
+              research,
+            </span>
+            <CareerModal
+              isOpen={showResearch}
+              onClose={() => setShowResearch(false)}
+              input={inputValue}
+              setInput={setInputValue}
+            />
+            <span
+              onClick={() => setShowCareer(true)}
+              style={{
+                textDecoration: "underline",
+                cursor: "pointer",
+                color: "rgb(135, 135, 135)",
+              }}
+              onMouseEnter={(e) =>
+                (e.target.style.color = "rgb(195, 195, 195)")
+              }
+              onMouseLeave={(e) =>
+                (e.target.style.color = "rgb(135, 135, 135)")
+              }
+            >
+              career,
+            </span>
+            <CareerModal
+              isOpen={showCareer}
+              onClose={() => setShowCareer(false)}
+              input={inputValue}
+              setInput={setInputValue}
+            />
+            <span
+              onClick={() => setShowLocation(true)}
+              style={{
+                textDecoration: "underline",
+                cursor: "pointer",
+                color: "rgb(135, 135, 135)",
+              }}
+              onMouseEnter={(e) =>
+                (e.target.style.color = "rgb(195, 195, 195)")
+              }
+              onMouseLeave={(e) =>
+                (e.target.style.color = "rgb(135, 135, 135)")
+              }
+            >
+              location.
+            </span>
+            <LocationModal
+              isOpen={showLocation}
+              onClose={() => setShowLocation(false)}
+              input={inputValue}
+              setInput={setInputValue}
+            />
+          </div>
         </header>
       ) : (
         <>

@@ -4,15 +4,16 @@ import Modal from "./Modal";
 import logo from "../images/logo.png";
 import "../styles/Modal.css";
 
-const CareerModal = ({ isOpen, onClose, setInput, input}) => {
+const CareerModal = ({ isOpen, onClose, setInput, input }) => {
   const [career, setCareer] = useState("");
 
   function onSubmit(e) {
     e.preventDefault();
-    let tmp = input + " The career I hope to eventually go into is " + career + "."
-    setInput(tmp)
-    setCareer("")
-    onClose()
+    let tmp =
+      input + " The career I hope to eventually go into is " + career + ".";
+    setInput(tmp);
+    setCareer("");
+    onClose();
   }
 
   return (
@@ -28,9 +29,7 @@ const CareerModal = ({ isOpen, onClose, setInput, input}) => {
           onChange={(e) => setCareer(e.target.value)}
           placeholder="Which career do you want to go into and want mentoring in..."
         />
-        <button type="submit">
-          Confirm
-        </button>
+        <button type="submit">Confirm</button>
       </form>
     </Modal>
   );

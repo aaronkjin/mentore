@@ -1,6 +1,9 @@
 import React from "react";
+
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase.js";
+
+import logo from "../images/logo-white.png";
 
 function Nav({
   displaySignUp,
@@ -26,8 +29,13 @@ function Nav({
     <nav>
       <div
         onClick={onResetChat}
-        style={{ paddingLeft: "10px", cursor: "pointer" }}
+        style={{
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+        }}
       >
+        <img src={logo} width={50} height={50} />
         <h1 style={{ fontSize: "28px" }}>Mentore</h1>
       </div>
       <div style={{ paddingRight: "10px" }}>

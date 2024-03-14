@@ -4,15 +4,19 @@ import Modal from "./Modal";
 import logo from "../images/logo.png";
 import "../styles/Modal.css";
 
-const ResearchModal = ({ isOpen, onClose, setInput, input}) => {
+const ResearchModal = ({ isOpen, onClose, setInput, input }) => {
   const [research, setResearch] = useState("");
 
   function onSubmit(e) {
     e.preventDefault();
-    let tmp = input + " The research specialty I want my mentor to specialize in is " + research + "."
-    setInput(tmp)
-    setResearch("")
-    onClose()
+    let tmp =
+      input +
+      " The research specialty I want my mentor to specialize in is " +
+      research +
+      ".";
+    setInput(tmp);
+    setResearch("");
+    onClose();
   }
 
   return (
@@ -28,9 +32,7 @@ const ResearchModal = ({ isOpen, onClose, setInput, input}) => {
           onChange={(e) => setResearch(e.target.value)}
           placeholder="Which research specialty do you want your mentor in..."
         />
-        <button type="submit">
-          Confirm
-        </button>
+        <button type="submit">Confirm</button>
       </form>
     </Modal>
   );
