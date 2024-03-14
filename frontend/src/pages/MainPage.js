@@ -1,13 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import "../styles/App.css";
+import IndustryModal from "../components/IndustryModal";
 
 import { IconDots } from "@tabler/icons-react";
+import CareerModal from "../components/CareerModal";
+import LocationModal from "../components/LocationModal";
 
 function MainPage({ onResetChat }) {
   const [inputValue, setInputValue] = useState("");
   const [logs, setLogs] = useState([]);
   const [chatBegin, setChatBegin] = useState(false);
+  const [showIndustry, setShowIndustry] = useState(false)
+  const [showResearch, setShowResearch] = useState(false)
+  const [showCareer, setShowCareer] = useState(false)
+  const [showLocation, setShowLocation] = useState(false)
   const textAreaRef = useRef(null);
 
   useEffect(() => {
@@ -112,6 +119,14 @@ function MainPage({ onResetChat }) {
             />
             <button type="submit">Search</button>
           </form>
+          <button onClick = {() => setShowIndustry(true)}>help me define my industry</button>
+          <IndustryModal isOpen={showIndustry} onClose={() => setShowIndustry(false)} input = {inputValue} setInput={setInputValue} />
+          <button onClick = {() => setShowResearch(true)}>help me define my research specialty</button>
+          <CareerModal isOpen={showResearch} onClose={() => setShowResearch(false)} input = {inputValue} setInput={setInputValue} />
+          <button onClick = {() => setShowCareer(true)}>help me define my career</button>
+          <CareerModal isOpen={showCareer} onClose={() => setShowCareer(false)} input = {inputValue} setInput={setInputValue} />
+          <button onClick = {() => setShowLocation(true)}>help me define my desired location</button>
+          <LocationModal isOpen={showLocation} onClose={() => setShowLocation(false)} input = {inputValue} setInput={setInputValue} />
         </header>
       ) : (
         <>
