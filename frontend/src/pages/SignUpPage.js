@@ -84,7 +84,7 @@ export default function SignUpPage() {
           <label className="form-label">Email:</label>
           <input
             type="text"
-            value={title}
+            value={email}
             onChange={(e) => setTitle(e.target.value)}
             id="inputID"
             placeholder="gavin@hooli.xyz"
