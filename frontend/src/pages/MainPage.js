@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import "../styles/App.css";
-import IndustryModal from "../components/IndustryModal";
-
 import { IconDots } from "@tabler/icons-react";
+
+import ResearchModal from "../components/ResearchModal";
+import IndustryModal from "../components/IndustryModal";
 import CareerModal from "../components/CareerModal";
 import LocationModal from "../components/LocationModal";
+
+import "../styles/App.css";
 
 function MainPage({ onResetChat, user }) {
   const [inputValue, setInputValue] = useState("");
@@ -50,7 +52,6 @@ function MainPage({ onResetChat, user }) {
     const payload = {
       user_id: user.metadata.createdAt,
       message: newLogEntry.user,
-
     };
 
     try {
@@ -98,123 +99,57 @@ function MainPage({ onResetChat, user }) {
 
   return (
     <>
+      {/* Home Page */}
       {!chatBegin ? (
-        <header className="App-header">
-          <p style={{ fontWeight: "medium" }}>Unlock Potential Together</p>
-          <form
-            style={{ width: "80%", maxWidth: "1000px" }}
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSubmit();
-            }}
-            autocomplete="off"
-          >
-            <textarea
-              id="textInput"
-              placeholder="Let's find your perfect mentor..."
-              ref={textAreaRef}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="autoresize-textarea"
-            />
-            <button type="submit">Search</button>
-          </form>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: "3px",
-              paddingTop: "8px",
-              justifyContent: "flex-start",
-            }}
-          >
-            <p style={{ color: "rgb(195, 195, 195)" }}>
-              Need mentorship? Explore:{" "}
-            </p>
-            <span
-              onClick={() => setShowIndustry(true)}
-              style={{
-                textDecoration: "underline",
-                cursor: "pointer",
-                color: "rgb(135, 135, 135)",
+        <>
+          <header className="App-header">
+            <p style={{ fontWeight: "medium" }}>Unlock Potential Together</p>
+            <form
+              className="search-form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
               }}
-              onMouseEnter={(e) =>
-                (e.target.style.color = "rgb(195, 195, 195)")
-              }
-              onMouseLeave={(e) =>
-                (e.target.style.color = "rgb(135, 135, 135)")
-              }
+              autocomplete="off"
             >
-              industry,
-            </span>
+              <textarea
+                id="textInput"
+                placeholder="Let's find your perfect mentor..."
+                ref={textAreaRef}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="autoresize-textarea"
+              />
+              <button type="submit">Search</button>
+            </form>
+          </header>
+
+          {/* User Search Help */}
+          <div className="user-search-help">
+            <p>Need mentorship? Explore: </p>
+            <span onClick={() => setShowIndustry(true)}>industry,</span>
             <IndustryModal
               isOpen={showIndustry}
               onClose={() => setShowIndustry(false)}
               input={inputValue}
               setInput={setInputValue}
             />
-            <span
-              onClick={() => setShowResearch(true)}
-              style={{
-                textDecoration: "underline",
-                cursor: "pointer",
-                color: "rgb(135, 135, 135)",
-              }}
-              onMouseEnter={(e) =>
-                (e.target.style.color = "rgb(195, 195, 195)")
-              }
-              onMouseLeave={(e) =>
-                (e.target.style.color = "rgb(135, 135, 135)")
-              }
-            >
-              research,
-            </span>
-            <CareerModal
+            <span onClick={() => setShowResearch(true)}>research,</span>
+            <ResearchModal
               isOpen={showResearch}
               onClose={() => setShowResearch(false)}
               input={inputValue}
               setInput={setInputValue}
             />
-            <span
-              onClick={() => setShowCareer(true)}
-              style={{
-                textDecoration: "underline",
-                cursor: "pointer",
-                color: "rgb(135, 135, 135)",
-              }}
-              onMouseEnter={(e) =>
-                (e.target.style.color = "rgb(195, 195, 195)")
-              }
-              onMouseLeave={(e) =>
-                (e.target.style.color = "rgb(135, 135, 135)")
-              }
-            >
-              career,
-            </span>
+            <span onClick={() => setShowCareer(true)}>career,</span>
             <CareerModal
               isOpen={showCareer}
               onClose={() => setShowCareer(false)}
               input={inputValue}
               setInput={setInputValue}
             />
-            <span
-              onClick={() => setShowLocation(true)}
-              style={{
-                textDecoration: "underline",
-                cursor: "pointer",
-                color: "rgb(135, 135, 135)",
-              }}
-              onMouseEnter={(e) =>
-                (e.target.style.color = "rgb(195, 195, 195)")
-              }
-              onMouseLeave={(e) =>
-                (e.target.style.color = "rgb(135, 135, 135)")
-              }
-            >
-              location.
-            </span>
+            <span onClick={() => setShowLocation(true)}>location.</span>
             <LocationModal
               isOpen={showLocation}
               onClose={() => setShowLocation(false)}
@@ -222,9 +157,10 @@ function MainPage({ onResetChat, user }) {
               setInput={setInputValue}
             />
           </div>
-        </header>
+        </>
       ) : (
         <>
+          {/* Chat Page */}
           <div className="chat-display">
             {logs.map((logEntry, index) => (
               <React.Fragment key={index}>

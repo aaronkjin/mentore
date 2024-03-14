@@ -45,7 +45,7 @@ function App() {
       {displaySignUp ? (
         <SignUpPage />
       ) : (
-        <MainPage key={key} onResetChat={resetChat} user = {user}/>
+        <MainPage key={key} onResetChat={resetChat} user={user} />
       )}
     </div>
   );

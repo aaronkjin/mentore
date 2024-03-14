@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Modal from "./Modal";
-import logo from "../images/logo.png";
+import logo from "../images/logo-white.png";
 import "../styles/Modal.css";
 
 const IndustryModal = ({ isOpen, onClose, setInput, input }) => {
@@ -19,14 +19,16 @@ const IndustryModal = ({ isOpen, onClose, setInput, input }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <img src={logo} width={200} height={200} />
       <header className="Modal-header">
-        <p className="font-modal-header">Welcome</p>
+        <p className="font-help-modal-header">
+          Which industry are you looking for a mentor in?
+        </p>
       </header>
       <form onSubmit={onSubmit} className="modal-form">
         <input
           type="text"
           value={industry}
           onChange={(e) => setIndustry(e.target.value)}
-          placeholder="Which industry are you looking for a mentor in..."
+          placeholder="e.g. Technology"
         />
         <button type="submit">Confirm</button>
       </form>

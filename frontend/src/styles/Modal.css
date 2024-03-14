@@ -16,6 +16,15 @@
   margin-bottom: 3rem;
 }
 
+.font-help-modal-header {
+  font-family: "NeueHaasRegular" !important;
+  color: white;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 100%;
+  margin-bottom: 3rem;
+}
+
 .modal-backdrop {
   position: fixed;
   top: 0;

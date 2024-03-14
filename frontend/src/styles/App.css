@@ -235,6 +235,42 @@ button:hover {
   color: white;
 }
 
+.main-page-header {
+  font-weight: medium;
+}
+
+.search-form {
+  width: 80%;
+  max-width: 1000px;
+}
+
+.user-search-help {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding-top: 8px;
+}
+
+.user-search-help p {
+  color: rgb(195, 195, 195);
+}
+
+.user-search-help span {
+  text-decoration: underline;
+  cursor: pointer;
+  color: rgb(135, 135, 135);
+}
+
+.user-search-help span:hover {
+  color: rgb(195, 195, 195);
+}
+
+.follow-up-form {
+  width: 80%;
+  max-width: 1000px;
+}
+
 /* Chat Page */
 .chat-display {
   display: flex;
