@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import "../styles/App.css";
 
@@ -8,10 +8,25 @@ function MainPage({ onResetChat }) {
   const [inputValue, setInputValue] = useState("");
   const [logs, setLogs] = useState([]);
   const [chatBegin, setChatBegin] = useState(false);
+  const textAreaRef = useRef(null);
+
+  useEffect(() => {
+    const textArea = textAreaRef.current;
+    const adjustHeight = () => {
+      textArea.style.height = "auto";
+      textArea.style.height = `${textArea.scrollHeight}px`;
+    };
+    adjustHeight();
+  }, [inputValue]);
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-
     // Edge case: Empty input value
     if (!inputValue.trim()) {
       alert("Please fill in a valid input value.");
@@ -80,16 +95,20 @@ function MainPage({ onResetChat }) {
           <p style={{ fontWeight: "medium" }}>Unlock Potential Together</p>
           <form
             style={{ width: "80%", maxWidth: "1000px" }}
-            onSubmit={handleSubmit}
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit();
+            }}
             autocomplete="off"
           >
-            <input
-              type="text"
+            <textarea
               id="textInput"
               placeholder="Let's find your perfect mentor..."
+              ref={textAreaRef}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              style={{ outlineColor: "#999" }}
+              onKeyDown={handleKeyDown}
+              className="autoresize-textarea"
             />
             <button type="submit">Search</button>
           </form>
@@ -126,16 +145,20 @@ function MainPage({ onResetChat }) {
           <header className="App-bottom">
             <form
               style={{ width: "80%", maxWidth: "1000px" }}
-              onSubmit={handleSubmit}
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+              }}
               autocomplete="off"
             >
-              <input
-                type="text"
+              <textarea
                 id="textInput"
                 placeholder="Ask a follow-up..."
+                ref={textAreaRef}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                style={{ outlineColor: "#999" }}
+                onKeyDown={handleKeyDown}
+                className="autoresize-textarea"
               />
               <button type="submit">Search</button>
             </form>

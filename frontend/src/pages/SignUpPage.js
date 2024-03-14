@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { database } from "../firebase.js";
 import { ref, set } from "firebase/database";
@@ -10,6 +10,18 @@ export default function SignUpPage() {
   const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
+  const bioRef = useRef(null);
+
+  useEffect(() => {
+    const adjustHeight = () => {
+      if (bioRef && bioRef.current) {
+        bioRef.current.style.height = "auto";
+        bioRef.current.style.height = `${bioRef.current.scrollHeight}px`;
+      }
+    };
+
+    adjustHeight();
+  }, [bio]);
 
   // Adds new mentor to our database of mentors
   function handleSubmit(e) {
@@ -96,15 +108,14 @@ export default function SignUpPage() {
         {/* Bio */}
         <div className="form-group">
           <label className="form-label">Bio:</label>
-          <input
-            type="text"
+          <textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             id="inputID"
-            placeholder="
-            As Hooli's visionary CEO, I tackle Silicon Valley's challenges..."
+            placeholder="As Hooli's visionary CEO, I tackle Silicon Valley's challenges..."
             className="mentor-bio"
             style={{ outlineColor: "#999" }}
+            ref={bioRef}
           />
         </div>
 
