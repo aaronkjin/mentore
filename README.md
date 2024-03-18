@@ -32,6 +32,8 @@ Register or log in through the Auth Page to begin interacting with the platform 
 
 ### Mentor Sign-Up Page
 
+<img width="1000" alt="mentore-signup" src="https://github.com/aaronkjin/mentore/assets/58490258/558dd481-2dd0-4553-b9e1-f77146ec8b6a">
+
 Aspiring mentors can register via the Mentor Sign-Up Page by clicking "Become a Mentor" and entering relevant details to join our mentor database. Enjoy the Easter egg featuring Gavin Belson in the placeholder text.
 
 ### Chat Page
