@@ -26,7 +26,7 @@ function Nav({
   };
 
   return (
-    <nav>
+    <nav style={{ paddingTop: "38px" }}>
       <div
         onClick={onResetChat}
         style={{
