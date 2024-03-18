@@ -38,6 +38,8 @@ Aspiring mentors can register via the Mentor Sign-Up Page by clicking "Become a 
 
 ### Chat Page
 
+<img width="1000" alt="mentore-chat" src="https://github.com/aaronkjin/mentore/assets/58490258/d6e4d4e3-cb1c-431c-975d-482cdfc2f5b3">
+
 The Chat Page delivers a sleek, minimalistic text-based interface for users to refine their search and interact with potential mentor matches through a backend-driven chatbot leveraging OpenAI embeddings and GPT-4.
 
 ## Design
