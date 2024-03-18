@@ -20,6 +20,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 ### Home Page
 
+<img width="1000" alt="mentore-home" src="https://github.com/aaronkjin/mentore/assets/58490258/3063e388-ff77-40d7-9154-fd892c29331c">
+
 Initiate your mentor search on our Home Page, offering a clean, intuitive interface inspired by leading LLM applications. Navigation options, including mentor signup and site logo for easy home access, are provided at the top.
 
 ### Auth Page
