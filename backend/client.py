@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from openai import OpenAI
 from scipy.spatial import distance
+import os
 import csv
 import json
 
@@ -22,14 +23,17 @@ with open(csv_file_path, mode='r', encoding='utf-8') as file:
         csv_content_by_row.append(row)
 
 # Initialize the OpenAI client with your API key
-client = OpenAI(api_key='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')
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+
 
 def generate_embeddings(data, model="text-embedding-3-small"):
     embeddings = []
     for row in data:
         row_string = ', '.join(row)
-        embeddings.append(client.embeddings.create(input = [row_string], model=model).data[0].embedding)
+        embeddings.append(client.embeddings.create(
+            input=[row_string], model=model).data[0].embedding)
     return embeddings
+
 
 @app.route("/query", methods=['POST'])
 def query_bot():
@@ -37,7 +41,8 @@ def query_bot():
     data = request.json
 
     user_text = data['message']
-    user_embedding = client.embeddings.create(input = [user_text], model="text-embedding-3-small").data[0].embedding
+    user_embedding = client.embeddings.create(
+        input=[user_text], model="text-embedding-3-small").data[0].embedding
 
     max_sim = float('-inf')
     id = 0
@@ -48,9 +53,10 @@ def query_bot():
             max_sim = cur_sim
             id = i
 
-    #print(csv_content_by_row[id])
+    # print(csv_content_by_row[id])
     # Convert the CSV content to a string representation for the query
-    system_message = f"You are a mentor-matching assistant. I will provide you a description of my academic interests, career goals, and/or hobbies. You will match me with the mentor" + ", ".join(csv_content_by_row[id]) + " who is most compatible with me."
+    system_message = f"You are a mentor-matching assistant. I will provide you a description of my academic interests, career goals, and/or hobbies. You will match me with the mentor" + \
+        ", ".join(csv_content_by_row[id]) + " who is most compatible with me."
 
     # Prepare and send the payload to the OpenAI API using the new client method
     response = client.chat.completions.create(
@@ -66,6 +72,7 @@ def query_bot():
         return jsonify(response.choices[0].message.content)
     else:
         return jsonify({"error": "Failed to get a response from OpenAI API"})
+
 
 if __name__ == "__main__":
     precompute = generate_embeddings(csv_content_by_row)
