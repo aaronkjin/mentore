@@ -26,6 +26,8 @@ Initiate your mentor search on our Home Page, offering a clean, intuitive interf
 
 ### Auth Page
 
+<img width="1000" alt="mentore-auth" src="https://github.com/aaronkjin/mentore/assets/58490258/a285d2af-54f4-4230-9b93-eccacabf9bf6">
+
 Register or log in through the Auth Page to begin interacting with the platform and access more personalized features.
 
 ### Mentor Sign-Up Page
