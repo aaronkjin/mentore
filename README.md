@@ -4,13 +4,13 @@ An LLM-integrated mentor-matching platform. Designed to connect you with the per
 
 ## Getting Started
 
-To see the website up and running, go into the frontend directory, and run:
+Quick setup to get the site running:
 
 ```bash
-# go into frontend
+# navigate to frontend directory
 cd frontend
 
-# run
+# run the application
 npm start
 ```
 
@@ -20,25 +20,29 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 ### Home Page
 
-Our Home Page provides a simple yet clean interface for users to begin searching for mentors that matches their desired descriptions. It draws inspiration from other LLM applications like Perplexity and Phind. At the top, users will have access to the navigation bar, where people can sign up to be a mentor (see more below) as well as click on "Mentore" itself to take them back to the home page wherever they are in their user flow.
+Initiate your mentor search on our Home Page, offering a clean, intuitive interface inspired by leading LLM applications. Navigation options, including mentor signup and site logo for easy home access, are provided at the top.
+
+### Auth Page
+
+Register or log in through the Auth Page to begin interacting with the platform and access more personalized features.
 
 ### Mentor Sign-Up Page
 
-Those who desire to mentor others may sign up to be a mentor through the Mentor Sign-Up Page. To do so, simply click the "Become a Mentor" button. They will then input necessary details (name, title, and biography), which will be added to our existing database of mentors (which houses both scraped and manually inputed data). As a little Easter egg, the placeholder values for these inputs show Gavin Belson, CEO of Hooli, from popular T.V. show, "Silicon Valley."
+Aspiring mentors can register via the Mentor Sign-Up Page by clicking "Become a Mentor" and entering relevant details to join our mentor database. Enjoy the Easter egg featuring Gavin Belson in the placeholder text.
 
 ### Chat Page
 
-To engage in chat further, users are directed to the Chat Page. The interface mimics an aesthetic, minimalistic conversational, text-like display. Our backend processes these user queries and uses OpenAI embeddings as well as GPT-4 itself to generate insightful outputs gathered from our database of mentors. Users can continue to converse with our chatbot to hone in and find the exact mentor that they are looking for. Additional touch-ups include animations such as skeleton loaders/text bubbles in between user query inputs and chatbot outputs, dynamic sizing, and more.
+The Chat Page delivers a sleek, minimalistic text-based interface for users to refine their search and interact with potential mentor matches through a backend-driven chatbot leveraging OpenAI embeddings and GPT-4.
 
 ## Design
 
 ### Backend
 
-The backend is engineered to process user queries through a robust JSON interface, leveraging OpenAI embeddings and GPT-4's computation capabilities. It analyzes user input to generate a compatible mentor match, outputting the results in a structured JSON format for the frontend to consume.
+Engineered to process user queries through a robust JSON interface, leveraging OpenAI embeddings and GPT-4's computation capabilities. Analyzes user input to generate a compatible mentor match, outputting the results in a structured JSON format for the frontend to consume.
 
 ### Frontend
 
-The frontend presents a digital UI, designed for intuitive user interactions. It facilitates the input of user information, displaying tailored mentor matches with rich profiles and interactive elements, ensuring a seamless user journey from query to connection.
+Offers a digital interface with seamless user interaction, supporting information input and displaying rich mentor profiles for an efficient user journey.
 
 ## Technologies Used
 
@@ -60,9 +64,13 @@ The frontend presents a digital UI, designed for intuitive user interactions. It
 ### Data Handling and AI
 
 - Precomputed embeddings using OpenAI's embedding models
-- RESTful API endpoints for querying and response handling
-- Cosine similarity for mentor matching logic
-- GPT-4 for generating mentor matches based on user queries
+- RESTful API endpoints (for querying and response handling)
+- Cosine similarity (for mentor matching logic)
+- GPT-4 (for generating mentor matches based on user queries)
+
+### Database
+
+- Firebase (to store mentors and auth details)
 
 ## Sprint 3 Updates
 
