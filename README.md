@@ -46,7 +46,7 @@ The Chat Page delivers a sleek, minimalistic text-based interface for users to r
 
 ### Backend
 
-Engineered to process user queries through a robust JSON interface, leveraging OpenAI embeddings and GPT-4's computation capabilities. Analyzes user input to generate a compatible mentor match, outputting the results in a structured JSON format for the frontend to consume.
+Engineered to process user queries through a JSON interface, leveraging OpenAI embeddings and GPT-4's computation capabilities. Analyzes user input to generate a compatible mentor match, outputting the results in a structured JSON format for the frontend to consume.
 
 ### Frontend
 
