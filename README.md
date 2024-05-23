@@ -80,6 +80,7 @@ Offers a digital interface with seamless user interaction, supporting informatio
 
 - Firebase (to store mentors and auth details)
 
+<!--
 ## Sprint 3 Updates
 
 ### Aaron
@@ -144,6 +145,7 @@ Improving Cosine Similarity Functionality: Currently, our platform is not matchi
 **This sprint:** I did api testing through postman to facilitate the connection between the frontend and the ec2 instance server. I worked primarily on maintaining the aws pipeline and working with Dan to build the flask server. Most of my code contributions were on the ubuntu ec2 instance side and most of my debugged changes were added to commits made by Dan.
 
 **Next sprint:** Work on getting the current code to work on the deployed app because there are current SSL issues. Improve mentor-matching with Dan to have not only LLM suggestions but also baseline category matching to ensure that the suggestions are geared towards the right direction. Start talking with customers (likely high school students) to gather interest and build a waitlist. Start to add in real mentors/tutors that start with a bunch of stanford students and ensure that the matching makes sense post database creation.
+-->
 
 ## Contributing
 
